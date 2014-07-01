@@ -22,11 +22,13 @@ module.exports = function(app){
 				});
 		},
 		resposta: function(req,res){
+				console.log('+++++++++++++++++++');
+				console.log(req.body);
 
 				new Resposta({
 						token_transaction: req.body.token_transaction
 					}).
-					save(function(err,ref){
+					save(function(err){
 						var smtpTransport = nodemailer.createTransport("SMTP",{
 						    service: "Gmail",
 						    auth: {
@@ -37,8 +39,8 @@ module.exports = function(app){
 
 						// setup e-mail data with unicode symbols
 						var mailOptions = {
-						    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
-						    to: req.body.email, // list of receivers
+						    from: "Resposta Direct MED ✔ <geriofilho@gmail.com>", // sender address
+						    to: "geriofilho@gmail.com", // list of receivers
 						    subject: "DirectMed ✔", // Subject line
 						    text: "Hello world ✔", // plaintext body
 						    html: "<h1> Chegou uma requisicao </h1> "+req.body+"" // html body
