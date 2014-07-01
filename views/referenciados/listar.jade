@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+	h4 Referenciado Listar
+	hr
+	if referenciados
+		div(class="table-responsive")
+			table(class="table table-condensed table-striped")
+				thead
+					tr
+						th CPF
+						th E-Mail
+						th Data
+						th 
+				tbody
+					each ref in referenciados
+						tr
+							td #{ref.cpf}
+							td #{ref.email}
+							td #{ref.created_at}
+							
+							td
+								
+
+
+
+	else
+		h4 Nenhum cadastro.

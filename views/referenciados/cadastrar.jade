@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+	h2 Referenciados
+	hr
+	div(class="col-md-6")
+		h2 Novo cadastro
+		form(role="form", method="POST", action="/referenciado/add")
+			div(class="form-group")
+				div(class="row")
+					div(class="col-md-4")
+						div(class="radio")
+							label 
+								input(type="radio", name="optionsRadios", id="optionsRadios2", value="option2")
+								span Pessoa Fisica
+					div(class="col-md-8")
+						div(class="radio", class="col-md-6")
+							label 
+								input(type="radio", name="optionsRadios", id="optionsRadios2", value="option2")
+								span Pessoa Juridica
+			div(class="form-group")
+				label(for="cpf") CPF
+				input(type="text", class="form-control", name="cpf", placeholder="CPF")
+			div(class="form-group")
+				label(for="exampleInputEmail1") Email address
+				input(type="email", class="form-control", name="email", placeholder="Enter email")
+			div(class="form-group")
+				label(for="senha") Senha
+				input(type="password", class="form-control", id="exampleInputEmail1", placeholder="Enter email")
+			div(class="form-group")
+				label(for="exampleInputEmail1") Confirme a senha
+				input(type="email", class="form-control", id="exampleInputEmail1", placeholder="Enter email")
+
+			button(type="submit", class="btn btn-default pull-right") Completar cadastro
+	div(class="col-md-6")
+		h2 Faça seu login
+		form(role="form")
+			div(class="form-group")
+				label(for="cpf") CPF
+				input(type="text", class="form-control", id="exampleInputEmail1", placeholder="CPF")
+			div(class="form-group")
+				label(for="exampleInputEmail1") Email address
+				input(type="email", class="form-control", name="email", placeholder="Enter email")
+			div(class="form-group")
+				label(for="senha") Senha
+				input(type="password", class="form-control", id="exampleInputEmail1", placeholder="Enter email")
+
+			button(type="submit", class="btn btn-success pull-right") Acessar o sistema
+			
