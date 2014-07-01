@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+	h2 Respostas
+	hr
+
+	if respostas
+		div(class="table-responsive")
+			table(class="table table-condensed table-striped")
+				thead
+					tr
+						th token_account
+						
+				tbody
+					each res in respostas
+						tr
+							td #{res.token_account}
+	else
+		h4 Nenhum cadastro.
