@@ -40,5 +40,5 @@ load('models').then('controllers').then('routes').into(app);
 var port = Number(process.env.PORT || 3000);
 //alterado
 app.listen(port, function(){
-  console.log('Iniciando na porta: ' + port +' ');
+  console.log('PortaAtiva: ' + port +' ');
 });
