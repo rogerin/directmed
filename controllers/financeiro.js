@@ -26,7 +26,7 @@ module.exports = function(app){
 				console.log(req.body);
 
 				new Resposta({
-						token_transaction: "Chegou aqui"
+						token_transaction: req.body.token_transaction
 					}).
 					save(function(err){
 						var smtpTransport = nodemailer.createTransport("SMTP",{
@@ -39,9 +39,9 @@ module.exports = function(app){
 
 						// setup e-mail data with unicode symbols
 						var mailOptions = {
-						    from: "Resposta Direct MED ✔ <geriofilho@gmail.com>", // sender address
+						    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
 						    to: "geriofilho@gmail.com", // list of receivers
-						    subject: "DirectMed ✔", // Subject line
+						    subject: "Resposta DirectMed ✔", // Subject line
 						    text: "Hello world ✔", // plaintext body
 						    html: "<h1> Chegou uma requisicao </h1> "+req.body+"" // html body
 						}
