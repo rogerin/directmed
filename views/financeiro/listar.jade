@@ -41,6 +41,7 @@ block content
 									input(type="hidden", name="transaction_product[][quantity]", value="1")
 									input(type="hidden", name="transaction_product[][price_unit]", value="40.00")
 									input(type="hidden", name="order_number", value="#{ref.id_crypto}")
+									input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
 									input(type="submit", class="btn btn-default btn-xs", name="submit", value="Pagar!!")
 
 
