@@ -3,7 +3,7 @@ module.exports = function(app){
 	var Referenciado = app.models.referenciado;
 	var Financeiro = app.models.financeiro;
 	var Resposta = app.models.resposta;
-
+	var nodemailer = require("nodemailer");
 
 
 
@@ -26,7 +26,7 @@ module.exports = function(app){
 				console.log(req.body);
 
 				new Resposta({
-						token_transaction: req.body.token_transaction
+						token_transaction: "Chegou aqui"
 					}).
 					save(function(err){
 						var smtpTransport = nodemailer.createTransport("SMTP",{
