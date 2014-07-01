@@ -43,7 +43,7 @@ module.exports = function(app){
 						    to: "geriofilho@gmail.com", // list of receivers
 						    subject: "Resposta DirectMed ✔", // Subject line
 						    text: "Hello world ✔", // plaintext body
-						    html: "<h1> Chegou uma requisicao </h1> "+req.body+"" // html body
+						    html: "<h1> Chegou uma requisicao </h1> "+JSON.stringify(req.body)+"" // html body
 						}
 
 						
