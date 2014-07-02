@@ -83,57 +83,42 @@ module.exports = function(app){
 								card_id: req.body.transaction.payment.card_id,
 								number_proccess: req.body.transaction.payment.number_proccess
 							}
-						}		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+						}
 					}).
 					save(function(err){
 						var smtpTransport = nodemailer.createTransport("SMTP",{
-						    service: "Gmail",
+					    	service: "Gmail",
 						    auth: {
 						        user: "geriofilho@gmail.com",
 						        pass: "yolandaa"
 						    }
 						});
 
-						// setup e-mail data with unicode symbols
-						var mailOptions = {
-						    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
-						    to: "geriofilho@gmail.com", // list of receivers
-						    subject: "Resposta DirectMed ✔", // Subject line
-						    text: "Hello world ✔", // plaintext body
-						    html: "<h1> Chegou uma requisicao </h1> "+JSON.stringify(req.body)+"" // html body
+						if(err) {
+
+							// setup e-mail data with unicode symbols
+							var mailOptions = {
+							    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
+							    to: "geriofilho@gmail.com", // list of receivers
+							    subject: "ERRO DirectMed ✔", // Subject line
+							    text: "Hello world ✔", // plaintext body
+							    html: "<h1> Chegou uma requisicao </h1> "+err+"" // html body
+
+							}
+
+
+						} else {
+			
+							// setup e-mail data with unicode symbols
+							var mailOptions = {
+							    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
+							    to: "geriofilho@gmail.com", // list of receivers
+							    subject: "Resposta DirectMed ✔", // Subject line
+							    text: "Hello world ✔", // plaintext body
+							    html: "<h1> Chegou uma requisicao </h1> "+JSON.stringify(req.body)+"" // html body
+							}
 						}
 
-						
 						smtpTransport.sendMail(mailOptions, function(error, response){
 						    if(error){
 						        console.log(error);
@@ -141,6 +126,8 @@ module.exports = function(app){
 						        console.log("Message sent: " + response.message);
 						    }	
 						});
+												
+						
 				});
 				res.send(200);
 		}
