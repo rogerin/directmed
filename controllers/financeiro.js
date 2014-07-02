@@ -23,7 +23,11 @@ module.exports = function(app){
 		},
 		resposta: function(req,res){
 				console.log('Dados recebido: ');
-				console.dir(req.body);
+				console.log(req.body);
+				console.log("TOKEN: "+req.body.token_transaction);
+				console.log("TRANSATION: "+req.body.transaction);
+
+
 				new Resposta({
 						token_transaction: req.body.token_transaction,
 						transaction: {
