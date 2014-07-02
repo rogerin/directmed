@@ -56,7 +56,7 @@ module.exports = function(app){
 									number: req.body.transaction.customer.address.number,
 									neighborhood: req.body.transaction.customer.address.neighborhood,
 									postal_code: req.body.transaction.customer.address.postal_code,
-									completion: req.body.transactioncustomer.address.completion,
+									completion: req.body.transaction.customer.address.completion,
 									city: req.body.transaction.customer.address.city,
 									state: req.body.transaction.customer.address.state
 								}
@@ -129,7 +129,7 @@ module.exports = function(app){
 												
 						
 				});
-				res.send(200);
+				res.writeHead(200, { 'Content-Type' : 'application/json' });
 		}
 	}
 
