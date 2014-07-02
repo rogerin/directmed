@@ -3,4 +3,6 @@ module.exports = function(app){
 
 	app.get('/financeiro', financeiro.index);
 	app.post('/financeiro/resposta', financeiro.resposta);
+	app.get('/financeiro/resposta', financeiro.resposta);
+
 }
