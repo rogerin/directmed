@@ -18,9 +18,9 @@ block content
 					each res in respostas
 						tr
 							td #{res.token_transaction}
-							td #{res.order_number}
-							td #{res.status_name}
-							td #{res.date_transaction}
+							td #{res.transaction.order_number}
+							td #{res.transaction.status_name}
+							td #{res.transaction.date_transaction}
 							
 	else
 		h4 Nenhum cadastro.
