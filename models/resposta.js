@@ -8,7 +8,7 @@ module.exports = function(app){
 	var resposta = new Schema({
 		token_transaction: String,
 		transaction: {
-			order_number: Number,
+			order_number: String,
 			free: String,
 			transaction_id: String,
 			status_name: String,
@@ -28,13 +28,12 @@ module.exports = function(app){
 			shipping_type: String,
 			payment_method_id: String,
 			payment_method_name: String,
-			products:[],
 			customer:{
 				name: String,
 				cpf: String,
 				email: String,
 				token: String,
-				address:{
+				address: {
 					street: String,
 					number: String,
 					neighborhood: String,

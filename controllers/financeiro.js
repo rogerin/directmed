@@ -22,6 +22,8 @@ module.exports = function(app){
 				});
 		},
 		resposta: function(req,res){
+				console.log('Dados recebido: ');
+				console.dir(req.body);
 				new Resposta({
 						token_transaction: req.body.token_transaction,
 						transaction: {
@@ -45,8 +47,7 @@ module.exports = function(app){
 							shipping_type: req.body.transaction.shipping_type,
 							payment_method_id: req.body.transaction.payment_method_id,
 							payment_method_name: req.body.transaction.payment_method_name,
-							products:[req.body.transaction.products],
-							customer:{
+							customer: {
 								name: req.body.transaction.customer.name,
 								cpf: req.body.transaction.customer.cpf,
 								email: req.body.transaction.customer.email,
