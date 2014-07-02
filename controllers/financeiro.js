@@ -22,10 +22,12 @@ module.exports = function(app){
 				});
 		},
 		resposta: function(req,res){
-				console.log('Dados recebido: ');
-				console.log(req.body);
+				//console.log('Dados recebido: ');
+				//console.log(req.body);
 				console.log("TOKEN: "+req.body.token_transaction);
 				console.log("TRANSATION: "+req.body.transaction);
+				console.log("TRANSATION.order_number: "+req.body.transaction.order_number);
+
 
 
 				new Resposta({
@@ -100,6 +102,7 @@ module.exports = function(app){
 						});
 
 						if(err) {
+							console.log("ERROR:" + err);
 
 							// setup e-mail data with unicode symbols
 							var mailOptions = {
@@ -113,6 +116,7 @@ module.exports = function(app){
 
 
 						} else {
+							console.log("SUCCESS!!");
 			
 							// setup e-mail data with unicode symbols
 							var mailOptions = {
@@ -124,6 +128,7 @@ module.exports = function(app){
 							}
 						}
 
+						/*
 						smtpTransport.sendMail(mailOptions, function(error, response){
 						    if(error){
 						        console.log(error);
@@ -131,6 +136,7 @@ module.exports = function(app){
 						        console.log("Message sent: " + response.message);
 						    }	
 						});
+						*/
 												
 						
 				});
