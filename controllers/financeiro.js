@@ -130,6 +130,7 @@ module.exports = function(app){
 						
 				});
 				res.writeHead(200, { 'Content-Type' : 'application/json' });
+				res.end();
 		}
 	}
 
