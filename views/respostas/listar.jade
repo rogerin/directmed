@@ -9,11 +9,18 @@ block content
 			table(class="table table-condensed table-striped")
 				thead
 					tr
-						th token_account
+						th token_transaction
+						th order_number
+						th status_name
+						th date_transaction
 						
 				tbody
 					each res in respostas
 						tr
 							td #{res.token_transaction}
+							td #{res.order_number}
+							td #{res.status_name}
+							td #{res.date_transaction}
+							
 	else
 		h4 Nenhum cadastro.

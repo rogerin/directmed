@@ -4,63 +4,79 @@ module.exports = function(app){
 	var Schema = mongoose.Schema;
 	var ObjectId = mongoose.Schema.Types.ObjectId;
 	
-	/*
+	
 	var resposta = new Schema({
-		response: {
-			message_response: {
-				message: String
-			},
-			data_response: {
-				transaction: {
-					order_number: Number,
-					free: String,
-					transaction_id: Number,
-					status_name: String,
-					status_id: Number,
-					token_transaciton: String,
-					payment: {
-						price_payment: String,
-						payment_response: String,
-						url_payment: String,
-						tid: String,
-						split: Number,
-						payment_method_id: Number,
-						payment_method_name: String,
-						linha_digitavel: Boolean,
-					},
-					customer: {
-						name: String,
-						cpf: String,
-						email: String,
-						addresses: [
-							{
-								address: String,
-								number: String,
-								neighborhood: String,
-								postal_code: String, 
-								completion: String,
-								city: String,
-								state: String
-							}
-						],
-						contact: [
-							{
-								contact: {
-									value: String,
-									type_contact: String
-								}
-							}
-						]
-					}
+		token_transaction: String,
+		transaction: {
+			order_number: Number,
+			free: String,
+			transaction_id: String,
+			status_name: String,
+			status_id: String,
+			date_transaction: String,
+			split: String,
+			price_payment: String,
+			date_payment: String,
+			seller_token: String,
+			transaction_token: String,
+			token_transaction: String,
+			price_seller: String,
+			price_original: String,
+			price_additional: String,
+			price_discount: String,
+			shipping_price: String,
+			shipping_type: String,
+			payment_method_id: String,
+			payment_method_name: String,
+			products:[],
+			customer:{
+				name: String,
+				cpf: String,
+				email: String,
+				token: String,
+				address:{
+					street: String,
+					number: String,
+					neighborhood: String,
+					postal_code: String,
+					completion: String,
+					city: String,
+					state: String
 				}
+			},
+			company: {
+				name: String,
+				cpf: String,
+				cnpj: String,
+				contact:String,
+				url: String,
+				token: String
+			},
+			payment: {
+				price_payment: String,
+				payment_response: String,
+				url_payment: String,
+				date_approval: String,
+				selling_message: String,
+				number_of_voucher_sales: String,
+				split: String,
+				date_payment: String,
+				payment_method_id: String,
+				payment_method_name: String,
+				card_id: String,
+				number_proccess: String
 			}
-		}
+		}	
 	});
+	
+	/*
+		var resposta = new Schema({
+			token_transaction: String
+		});
 	*/
-
-	var resposta = new Schema({
-		token_transaction: String
-	});
-
 	return mongoose.model('Resposta', resposta);
 }
+
+
+
+
