@@ -35,37 +35,32 @@ module.exports = function(app){
 							id_crypto: dateCrypt
 						}).save(function(err){
 
+							var smtpTransport = nodemailer.createTransport("SMTP",{
+							    service: "Gmail",
+							    auth: {
+							        user: "geriofilho@gmail.com",
+							        pass: "yolandaa"
+							    }
+							});
 
-		var smtpTransport = nodemailer.createTransport("SMTP",{
-		    service: "Gmail",
-		    auth: {
-		        user: "geriofilho@gmail.com",
-		        pass: "yolandaa"
-		    }
-		});
+							// setup e-mail data with unicode symbols
+							var mailOptions = {
+							    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
+							    to: req.body.email, // list of receivers
+							    subject: "DirectMed ✔", // Subject line
+							    text: "Hello world ✔", // plaintext body																				// 
+							    html: "<h2> Finalize o pagamento </h2><form method=\"post\" action=\"https://checkout.sandbox.tray.com.br/payment/transaction\"><input type=\"hidden\" name=\"token_account\" value=\"7fe49d0444e9ba9\"><input type=\"hidden\" name=\"url_notification\" value=\"http://directmed.herokuapp.com/financeiro/resposta\"><input type=\"hidden\" name=\"transaction_product[][description]\" value=\"Cadastro DirectMed\"><input type=\"hidden\" name=\"transaction_product[][quantity]\" value=\"1\"><input type=\"hidden\" name=\"transaction_product[][price_unit]\" value=\"40.00\"><input type=\"hidden\" name=\"order_number\" value=\""+dateCrypt+"\"><input type=\"submit\" name=\"submit\" value=\"Finalize seu pagamento!!\"></form>" // html body
+							}
 
-		// setup e-mail data with unicode symbols
-		var mailOptions = {
-		    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
-		    to: req.body.email, // list of receivers
-		    subject: "DirectMed ✔", // Subject line
-		    text: "Hello world ✔", // plaintext body																				// 
-		    html: "<h2> Finalize o pagamento </h2><form method=\"post\" action=\"https://checkout.sandbox.tray.com.br/payment/transaction\"><input type=\"hidden\" name=\"token_account\" value=\"7fe49d0444e9ba9\"><input type=\"hidden\" name=\"url_notification\" value=\"http://directmed.herokuapp.com/financeiro/resposta\"><input type=\"hidden\" name=\"transaction_product[][description]\" value=\"Cadastro DirectMed\"><input type=\"hidden\" name=\"transaction_product[][quantity]\" value=\"1\"><input type=\"hidden\" name=\"transaction_product[][price_unit]\" value=\"40.00\"><input type=\"hidden\" name=\"order_number\" value=\""+dateCrypt+"\"><input type=\"submit\" name=\"submit\" value=\"Finalize seu pagamento!!\"></form>" // html body
-		}
+							smtpTransport.sendMail(mailOptions, function(error, response){
+							    if(error){
+							        console.log(error);
+							    }else{
+							        console.log("Message sent: " + response.message);
+							    }
 
-		// send mail with defined transport object
-		smtpTransport.sendMail(mailOptions, function(error, response){
-		    if(error){
-		        console.log(error);
-		    }else{
-		        console.log("Message sent: " + response.message);
-		    }
-
-		    // if you don't want to use this transport object anymore, uncomment following line
-		    //smtpTransport.close(); // shut down the connection pool, no more messages
-		});
-
-
+							    smtpTransport.close(); // shut down the connection pool, no more messages
+							});
 
 
 							res.redirect('/financeiro');

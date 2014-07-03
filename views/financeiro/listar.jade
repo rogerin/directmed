@@ -9,32 +9,48 @@ block content
 			table(class="table table-condensed table-striped")
 				thead
 					tr
-						th id_crypto
+						th id
 						th CPF
 						th E-mail
-						th Data
+						//th Data
 						th Status
+						th TOKEN
 						th 
 				tbody
 					each ref in financeiro
-						tr
-							td #{ref.id_crypto}
+						if (ref.resposta)
+							tr
+								td #{ref.id_crypto}
+								td #{ref.referenciado.cpf}
+								td #{ref.referenciado.email}
+								//td #{ref.created_at}	 
+								td #{ref.resposta.transaction.status_name}
+								td #{ref.resposta.token_transaction}
+								td
+									form(method="get", action="http://checkout.sandbox.tray.com.br/payment/transaction/#{ref.resposta.token_transaction}", target="_blank")
+										input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
+										input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
+										input(type="hidden", name="type_response", value="J")
+										input(type="submit", class="btn btn-default btn-xs", name="submit", value="Finalizar Pagamento")
+						else
+							tr(class="danger")
+								td #{ref.id_crypto}
+								td #{ref.referenciado.cpf}
+								td #{ref.referenciado.email}
+								//td #{ref.created_at}	 
+								td 
+								td 
+								td
+									form(method="post", action="https://checkout.sandbox.tray.com.br/payment/transaction", target="_blank")
+										input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
+										input(type="hidden", name="transaction_product[][description]", value="Cadastro DirectMed")
+										input(type="hidden", name="transaction_product[][quantity]", value="1")
+										input(type="hidden", name="transaction_product[][price_unit]", value="40.00")
+										input(type="hidden", name="order_number", value="#{ref.id_crypto}")
+										input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
+										input(type="hidden", name="type_response", value="J")
+										input(type="submit", class="btn btn-default btn-xs", name="submit", value="Pagar!!")
 
-							td #{ref.referenciado.email}
-							td #{ref.referenciado.cpf}
-
-							td #{ref.created_at}
-							td #{ref.resposta.token_transaction}
-							td
-								form(method="post", action="https://checkout.sandbox.tray.com.br/payment/transaction", target="_blank")
-									input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
-									input(type="hidden", name="transaction_product[][description]", value="Cadastro DirectMed")
-									input(type="hidden", name="transaction_product[][quantity]", value="1")
-									input(type="hidden", name="transaction_product[][price_unit]", value="40.00")
-									input(type="hidden", name="order_number", value="#{ref.id_crypto}")
-									input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
-									input(type="hidden", name="type_response", value="J")
-									input(type="submit", class="btn btn-default btn-xs", name="submit", value="Pagar!!")
 
 	else
 		h4 Nenhum cadastro.
