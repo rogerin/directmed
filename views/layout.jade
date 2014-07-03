@@ -18,11 +18,11 @@ html
 						span(class="icon-bar")
 						span(class="icon-bar")
 						span(class="icon-bar")
-					a(class="navbar-brand", href="#") DirectMed
+					a(class="navbar-brand", href="/") DirectMed
 				div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1")
 					ul(class="nav navbar-nav")
 						li(class="active")
-							a(href="#") Link
+							a(href="/") Resumo
 						li(class="dropdown")
 							a(href="#", class="dropdown-toggle", data-toggle="dropdown") Referenciado <span class="caret"></span>
 							ul(class="dropdown-menu", role="menu")
@@ -50,6 +50,10 @@ html
 								li
 									a(href="/respostas/listar") Relatório auto recebimento
 		div(class="container")
+			
+			div(class="alert alert-dismissable alert-success")
+				button(type="button", class="close", data-dismiss="alert") ×
+				span <strong>Flash Mensagens!</strong> Aqui vai carregar as mensagens do sistema de erro ou sucesso! <a href="#" class="alert-link">confira!</a>
 			block content
 		script(src="/javascripts/jquery.js")
 		script(src="/javascripts/bootstrap.min.js")
