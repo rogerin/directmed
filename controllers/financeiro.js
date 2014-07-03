@@ -97,7 +97,7 @@ module.exports = function(app){
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 							        	Financeiro.findOne({'id_crypto': req.body.transaction.order_number}, function(err, result){
-											result.resposta = resposta._id;
+											result.resposta = result._id;
 											result.save(function(err){
 												if(err) { console.log('ERROR: ' + err) }
 												else { console.log('FINANCEIRO ATUALIZADO') }
