@@ -29,6 +29,7 @@ module.exports = function(app){
 				console.log("TRANSATION.order_number: "+req.body.transaction.order_number);
 
 
+				
 
 				Resposta.findOne({ 'token_transaction': req.body.token_transaction }, function (err, result) {
 					if(err) { console.log("ERROR: " + err); }
@@ -95,6 +96,13 @@ module.exports = function(app){
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
+							        	Financeiro.findOne({'id_crypto': req.body.transaction.order_number}, function(err, result){
+											result.resposta = resposta._id;
+											result.save(function(err){
+												if(err) { console.log('ERROR: ' + err) }
+												else { console.log('FINANCEIRO ATUALIZADO') }
+											});
+										});
 							        }
 							    });
 
@@ -187,6 +195,13 @@ module.exports = function(app){
 
 								} else {
 									console.log("SUCCESS!!");
+									Financeiro.findOne({'id_crypto': req.body.transaction.order_number}, function(err, result){
+										result.resposta = resposta._id;
+										result.save(function(err){
+											if(err) { console.log('ERROR: ' + err) }
+											else { console.log('FINANCEIRO ATUALIZADO') }
+										});
+									});
 					
 									// setup e-mail data with unicode symbols
 									var mailOptions = {

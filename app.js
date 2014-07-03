@@ -1,11 +1,11 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var load = require('express-load');
-var mongoose    = require('mongoose');
-var app         = express();
+var express		= require('express'),
+	app         = express(),
+	path 		= require('path'),
+	favicon 	= require('static-favicon'),
+	cookieParser= require('cookie-parser'),
+	bodyParser 	= require('body-parser'),
+	load 		= require('express-load'),
+	mongoose    = require('mongoose');
 
 
 //
@@ -30,8 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 
 
 load('models').then('controllers').then('routes').into(app);

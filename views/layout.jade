@@ -9,7 +9,7 @@ html
 		link(rel='stylesheet', href='/stylesheets/style.css')
 
 
-	body(data-ng-app)
+	body
 		nav(class="navbar navbar-default navbar-fixed-top", role="navigation")
 			div(class="container-fluid")
 				div(class="navbar-header")
@@ -37,7 +37,18 @@ html
 									a(href="/financeiro") Listar
 								li 
 									a(href="") ###
-
+					ul(class="nav navbar-nav navbar-right")
+						li(class="dropdown")
+							a(href="#", class="dropdown-toggle", data-toggle="dropdown", id="configuracoes") Configurações
+								span(class="caret")
+							ul(class="dropdown-menu", aria-labelledby="conficuracoes")
+								li(class="dropdown-header") Usuário
+								li
+									a(href="#") Perfil
+								li(class="divider")
+								li(class="dropdown-header") Sistema
+								li
+									a(href="/respostas/listar") Relatório auto recebimento
 		div(class="container")
 			block content
 		script(src="/javascripts/jquery.js")

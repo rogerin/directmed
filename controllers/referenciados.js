@@ -5,17 +5,6 @@ module.exports = function(app){
 	var nodemailer = require("nodemailer");
 	var md5 = crypto.createHash('md5');
 
-	
-
-
-
-
-
-
-
-
-
-
 
 	var RefController = {
 		index: function(req,res){
@@ -34,7 +23,8 @@ module.exports = function(app){
 			var dateCrypt = Date.now();
 			new Referenciado({
 					cpf: req.body.cpf,
-					email: req.body.email
+					email: req.body.email,
+					password: req.body.password
 				}).
 				save(function(err,ref){
 
