@@ -93,13 +93,13 @@ module.exports = function(app){
 							result.transaction.payment.card_id 					= req.body.transaction.payment.card_id;
 							result.transaction.payment.number_proccess 			= req.body.transaction.payment.number_proccess;
 
-							  result.save(function (err) {
+							  result.save(function (err, resposta) {
 							        if(err) {
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 							        	Financeiro.findOne({'id_crypto': req.body.transaction.order_number}, function(err, result){
-											result.resposta = result._id;
+											result.resposta = resposta._id;
 											result.save(function(err){
 												if(err) { console.log('ERROR: ' + err) }
 												else { console.log('FINANCEIRO ATUALIZADO') }
@@ -172,7 +172,7 @@ module.exports = function(app){
 									}
 								}
 							}).
-							save(function(err){
+							save(function(err, resposta){
 								var smtpTransport = nodemailer.createTransport("SMTP",{
 							    	service: "Gmail",
 								    auth: {
