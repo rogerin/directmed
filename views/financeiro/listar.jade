@@ -24,7 +24,7 @@ block content
 							td #{ref.referenciado.cpf}
 
 							td #{ref.created_at}
-							td #{ref.resposta.transaction.status_name}
+							td #{ref.resposta}
 							td
 								form(method="post", action="https://checkout.sandbox.tray.com.br/payment/transaction", target="_blank")
 									input(type="hidden", name="token_account", value="7fe49d0444e9ba9")

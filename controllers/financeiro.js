@@ -11,12 +11,14 @@ module.exports = function(app){
 		index: function(req,res){
 			Financeiro
 				.find()
-				.populate('referenciado') // only return the Persons name
+				.populate('referenciado')
+				.populate('resposta')
 				.exec(function (err, financeiro) {
 				  if (err) {
 				  	console.log(err);
 				  	res.send(err);
 				  } else {
+				  		console.log(financeiro);
 					  res.render('financeiro/listar', { financeiro: financeiro });
 				  }
 				});
