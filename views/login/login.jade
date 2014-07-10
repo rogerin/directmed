@@ -9,10 +9,10 @@ html
 		link(rel='stylesheet', href='/stylesheets/login.css')
 	body
 		div(class="container")
-			form(class="form-signin", role="form", action="/logar", method="POST")
+			form(class="form-signin", role="form", action="/login", method="POST")
 				h2(class="form-signin-heading") Faça o login
-				input(type="email", class="form-control", placeholder="Email address", required, autofocus)
-				input(type="password", class="form-control", placeholder="Password", required)
+				input(name="username", type="text", class="form-control", placeholder="Email address", required, autofocus)
+				input(name="password", type="password", class="form-control", placeholder="Password", required)
 				div(class="checkbox")
 					label  
 						input(type="checkbox", value="lembrar_login") 

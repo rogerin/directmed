@@ -5,9 +5,14 @@ var LoginController = {
 		res.render('login/login');
 	},
 	logar: function(req,res){
-		res.send(200);
+		req.flash('info', 'logout com sucesso');
+		res.redirect('/');
+	},
+	logout: function(req,res){
+		req.logout();
+		req.flash('info', 'logout com sucesso');
+		res.redirect('/');
 	}
-
 }
 
 	return LoginController;

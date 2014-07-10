@@ -1,14 +1,16 @@
-var express		= require('express'),
-	app         = express(),
-	path 		= require('path'),
-	favicon 	= require('static-favicon'),
-	cookieParser= require('cookie-parser'),
-	bodyParser 	= require('body-parser'),
-	load 		= require('express-load'),
-	mongoose    = require('mongoose');
-
-
-//
+var express			= require('express'),
+	app         	= express(),
+	path 			= require('path'),
+	favicon 		= require('static-favicon'),
+	cookieParser 	= require('cookie-parser'),
+	bodyParser 		= require('body-parser'),
+	expressSession 	= require('express-session'),
+	load 			= require('express-load'),
+	mongoose    	= require('mongoose'),
+	passport 		= require('passport'),
+	passportLocal 	= require('passport-local'),
+	passportHttp  	= require('passport-http'),
+	flash  			= require('express-flash');
 
 //mongoose.connect('mongodb://localhost/directmed', function(err){
 mongoose.connect('mongodb://rogerio:yolanda@mongo.onmodulus.net:27017/un3uhoQo', function(err){
@@ -25,11 +27,53 @@ var db = mongoose.connect;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(favicon());
+//app.use(favicon());
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(cookieParser('secret-string-yolanda-te-amo'));
+app.use(expressSession({
+							secret: process.env.SESSION_SECRET || 'secret-string-yolanda-te-amo-demais',
+							saveUninitialized: false,
+                 			resave: false
+						}
+					)
+		);
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+passport.use(new passportLocal.Strategy(verificaLogin));
+
+
+passport.use(new passportHttp.BasicStrategy(verificaLogin));
+
+
+function verificaLogin(username, password, done){
+	// pretend this is using a real database!
+	if(username === password) {
+		done(null, { id: username, name: username });
+	} else {
+		done(null, null);
+	}
+}
+
+passport.serializeUser(function(user, done){
+	done(null, user.id);
+});
+
+
+passport.deserializeUser(function(id, done){
+	// query database or cache here!
+	done(null, { id: id, name: id});
+});
+
+
+
+app.use('/api', passport.authenticate('basic'), { session: false });
 
 
 load('models').then('controllers').then('routes').into(app);

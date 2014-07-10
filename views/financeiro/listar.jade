@@ -1,13 +1,14 @@
 extends ../layout
-
+block css
+	link(rel='stylesheet', href='/stylesheets/datepicker.css')
 block content
 	h2 Financeiro
 	div(class="row")
 
 		div(class="col-md-12")
 			form(id="", method="POST", action="/financeiro", class="form-horizontal")
-				label Nº Pedido
-					input(type="text", class="form-control", placeholder="Numero da compra", name="id_crypto")
+				label Usuário
+					input(type="text", class="form-control", placeholder="OS/Nome/CPF", name="id_crypto")
 				
 				label busca
 					select(class="form-control", name="status_id")
@@ -21,15 +22,10 @@ block content
 						option(value="88") Em Recuperação 
 						option(value="89") Reprovada 
 				
-				label cpf
-					input(type="text", class="form-control", placeholder="CPF", name="cpf")
 				label Data Inicio
-					input(type="text", class="form-control", placeholder="CPF", name="cpf")
+					input(type="text", class="form-control datepicker", placeholder="Data inicio", name="cpf")
 				label Data Fim
-					input(type="text", class="form-control", placeholder="CPF", name="cpf")
-				label Data Fim
-					input(type="text", class="form-control", placeholder="CPF", name="cpf")
-
+					input(type="text", class="form-control datepicker", placeholder="Data fim", name="cpf")
 
 				label
 					input(type="submit", class="btn btn-success form-control", value="Buscar!")
@@ -52,7 +48,27 @@ block content
 						tbody
 							each ref in financeiro
 								if (ref.resposta)
-									tr
+									case ref.resposta.transaction.status_id
+										when 4
+											classList: = 'info'
+										when 5
+											classList = 'info'
+										when 6
+											classList = 'info'
+										when 7
+											classList = 'info'
+										when 24
+											classList = 'info'
+										when 87
+											classList = 'info'
+										when 88
+											classList = 'info'
+										when 89
+											classList = 'info'
+										default
+											classList = 'info'
+
+									tr(class="#{classList}")
 										td #{ref.id_crypto}
 										td #{ref.referenciado.cpf}
 										td #{ref.referenciado.email}
@@ -88,14 +104,19 @@ block content
 						a(href="#") «
 					li(class="active")
 						a(href="#") 1
-					li(class="disabled")
+					li()
 						a(href="#") 2
-					li(class="active")
+					li()
 						a(href="#") 3
-					li(class="disabled")
+					//class="disabled"
+					li()
 						a(href="#") 4
-					li(class="active")
+					li()
 						a(href="#") »
 
 			else
 				h4 Nenhum cadastro.
+block script
+	script(src="/javascripts/bootstrap-datepicker.js")
+	script(src="/javascripts/data.js")
+

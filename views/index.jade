@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1 DirectMED
-  p Testando funcionalidades so sistema.
+	h1 DirectMED
+	p Testando funcionalidades so sistema.
+	if isAuthenticated
+		p autenticado #{user.name}
+	else
+		p nao autenticado
+
+	p 
+		a(href="/logout") Logout

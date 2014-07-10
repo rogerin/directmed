@@ -9,6 +9,7 @@ module.exports = function(app){
 
 	var FinanceiroController = {
 		index: function(req,res){
+			req.flash('info', 'logout com sucesso');
 			Financeiro
 				.find()
 				.populate('referenciado')

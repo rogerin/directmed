@@ -7,6 +7,7 @@ html
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
+		block css
 
 
 	body
@@ -50,10 +51,11 @@ html
 								li
 									a(href="/respostas/listar") Relatório auto recebimento
 		div(class="container")
-			
-			div(class="alert alert-dismissable alert-success")
-				button(type="button", class="close", data-dismiss="alert") ×
-				span <strong>Flash Mensagens!</strong> Aqui vai carregar as mensagens do sistema de erro ou sucesso! <a href="#" class="alert-link">confira!</a>
+			if (messages.info)
+				div(class="alert alert-dismissable alert-success")
+					button(type="button", class="close", data-dismiss="alert") ×
+					span #{messages.info}
 			block content
 		script(src="/javascripts/jquery.js")
 		script(src="/javascripts/bootstrap.min.js")
+		block script

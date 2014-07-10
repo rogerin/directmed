@@ -18,10 +18,12 @@
     "nodemailer": "^0.7.0",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^0.3.0",
     "method-override": "^2.0.2",
-    "express-session": "^1.6.1",
+    "express-session": "^1.6.4",
     "connect-flash": "^0.1.1",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "passport-http": "^0.2.2",
+    "passport-facebook": "^1.0.3",
+    "express-flash": "0.0.2"
   }
 }
