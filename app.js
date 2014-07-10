@@ -4,6 +4,7 @@ var express			= require('express'),
 	favicon 		= require('static-favicon'),
 	cookieParser 	= require('cookie-parser'),
 	bodyParser 		= require('body-parser'),
+	methodOverride = require('method-override'),
 	expressSession 	= require('express-session'),
 	load 			= require('express-load'),
 	mongoose    	= require('mongoose'),
@@ -32,6 +33,7 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+app.use(methodOverride());
 app.use(cookieParser('secret-string-yolanda-te-amo'));
 app.use(expressSession({
 							secret: process.env.SESSION_SECRET || 'secret-string-yolanda-te-amo-demais',
