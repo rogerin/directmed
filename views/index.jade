@@ -1,12 +1,50 @@
 extends layout
 
 block content
-	h1 DirectMED
-	p Testando funcionalidades so sistema.
-	if isAuthenticated
-		p autenticado #{user.name}
+	if user.is_admin
+		p implementar admni em breve.
 	else
-		p nao autenticado
+		div(class="row")
+			div(class="col-md-8")
+				div(class="panel panel-default")
+					div(class="panel-heading")
+						h3(class="panel-title") Informativo DirectMed Card 
+					div(class="panel-body") Seu cadastro ainda não esta finalizardo! notamos que você esta com 20% do cadastro concluido.  <a href="#">Finalizar cadastro</a>.
 
-	p 
-		a(href="/logout") Logout
+
+			div(class="col-md-4")
+				div(class="panel panel-default")
+					div(class="panel-heading")
+						h3(class="panel-title") Resumo da sua conta
+					table(class="table table-striped")
+						tr
+							td(width="20%") Saldo:
+							//- td <span class="label label-success">Success</span>
+							td <span class="label label-default">Você ainda não tem cartão</span> <small> <a href="#"> Solicite</a>
+						tr
+							td Status:
+							td 
+								if user.ativo
+									span(class="label label-success") Ativo
+								else
+									span(class="label label-danger") Inativo
+
+						tr
+							td Vaucher:
+							td 0
+
+					
+
+		div(class="row")
+			div(class="col-md-6")
+				h2 Solicitar Cartão DirectMed
+				p Solicite agora mesmo nosso cartão para você continuar usando nossos serviços.
+				p 
+					a(href="#", class="btn btn-success") Solicitar Cartão!
+			div(class="col-md-6")
+				h2 Seja um Referenciado
+				p Para ser nosso referenciado, você deve finalizar seu cadastro.
+				p 
+					a(href="#", class="btn btn-success") Tornar-se um referenciado!
+
+

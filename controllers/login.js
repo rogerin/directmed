@@ -5,15 +5,19 @@ var LoginController = {
 		res.render('login/login');
 	},
 	logar: function(req,res){
-		req.flash('info', 'logout com sucesso');
+		req.flash('info', 'Usuário logado com sucesso! Bem vindo a Acesso Exclusivo!');
 		res.redirect('/');
 	},
 	logout: function(req,res){
 		req.logout();
-		req.flash('info', 'logout com sucesso');
+		req.flash('info', 'Logout com sucesso!');
+		res.redirect('/');
+	},
+	errorLogin: function(req,res){
+		req.logout();
+		req.flash('info', 'Erro ao fazer login!');
 		res.redirect('/');
 	}
 }
-
 	return LoginController;
 }

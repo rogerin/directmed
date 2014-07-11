@@ -1,18 +1,14 @@
 module.exports = function(app){
 	
-	/*
-	
-	var user = app.controllers.user,
-		passport 	= require('passport');
-	
+	var autenticar = require('./../middleware/autenticador'),
+		user = app.controllers.user;
 
-	app.get('/user', login.login);
-	
-	app.post('/login', passport.authenticate('local',{
-		successRedirect: '/',
-		failureRedirect: '/login'
-	}));
 
-	*/
 
+	app.get('/users', autenticar.loginSistema, user.index);
+	app.get('/user/:id/visualizar', autenticar.loginSistema, user.visualizar);
+
+	app.post('/user', user.add);
+
+	app.get('/user/cadastrar', autenticar.loginSistema, user.cadastrar);
 }

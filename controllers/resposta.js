@@ -8,7 +8,10 @@ module.exports = function(app){
 				if(err) {
 					console.log("Erro ao listar gavetas: " + err);
 				} else {
-					res.render('respostas/listar', {respostas:respostas});
+					res.render('respostas/listar', {
+														respostas:respostas,
+														user: req.user	
+													});
 				}
 			});
 		}

@@ -12,12 +12,19 @@ module.exports = function(app){
 				if(err) {
 					console.log("Erro ao listar gavetas: " + err);
 				} else {
-					res.render('referenciados/listar', {referenciados:referenciados});
+					res.render('referenciados/listar', {
+						menu: 'referenciado',
+						referenciados:referenciados,
+						user: req.user
+					});
 				}
 			});
 		},
 		cadastrar: function(req,res){
-			res.render('referenciados/cadastrar');
+			res.render('referenciados/cadastrar', {
+				menu: 'referenciado',
+				user: req.user
+			});
 		},
 		add: function(req,res){
 			var dateCrypt = Date.now();

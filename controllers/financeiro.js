@@ -9,7 +9,7 @@ module.exports = function(app){
 
 	var FinanceiroController = {
 		index: function(req,res){
-			req.flash('info', 'logout com sucesso');
+			//req.flash('info', 'logout com sucesso');
 			Financeiro
 				.find()
 				.populate('referenciado')
@@ -20,7 +20,11 @@ module.exports = function(app){
 				  	res.send(err);
 				  } else {
 				  		console.log(financeiro);
-					  res.render('financeiro/listar', { financeiro: financeiro });
+					  res.render('financeiro/listar', {
+					  	menu: 'financeiro',
+					  	financeiro: financeiro,
+						user: req.user 
+					  });
 				  }
 				});
 		},

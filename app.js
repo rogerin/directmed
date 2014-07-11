@@ -32,7 +32,6 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -60,36 +59,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 passport.use(new passportLocal.Strategy(verificaLogin));
 
-
 passport.use(new passportHttp.BasicStrategy(verificaLogin));
 
-
 function verificaLogin(username, password, done){
-	// pretend this is using a real database!
-	if(username === password) {
-		done(null, { id: username, name: username });
-	} else {
-		done(null, null);
-	}
+	var pass = require('./middleware/password');
+	var User = app.models.user;
+	User.findOne({ 'email': username }, function (err, result) {
+		if(err) { console.log("ERROR: " + err); }
+		else {
+			if(result){
+				if(result.email == username && pass.validate(result.password, password)) {
+					done(null, result);
+				} else {
+					done(null, null);
+				}
+			} else {
+				done(null, null);
+			}
+		}
+	});
 }
 
 passport.serializeUser(function(user, done){
-	done(null, user.id);
+	done(null, user);
 });
 
-
-passport.deserializeUser(function(id, done){
-	// query database or cache here!
-	done(null, { id: id, name: id});
+passport.deserializeUser(function(user, done){
+	done(null, user);
 });
-
-
 
 app.use('/api', passport.authenticate('basic'), { session: false });
 
-
 load('models').then('controllers').then('routes').into(app);
-
 
 var port = Number(process.env.PORT || 3000);
 //alterado

@@ -2,9 +2,11 @@ extends ../layout
 block css
 	link(rel='stylesheet', href='/stylesheets/datepicker.css')
 block content
-	h2 Financeiro
 	div(class="row")
-
+		div(class="col-md-12")
+			h2 Financeiro
+		div(class="col-md-12")
+			hr
 		div(class="col-md-12")
 			form(id="", method="POST", action="/financeiro", class="form-horizontal")
 				label Usuário
@@ -48,26 +50,6 @@ block content
 						tbody
 							each ref in financeiro
 								if (ref.resposta)
-									case ref.resposta.transaction.status_id
-										when 4
-											classList: = 'info'
-										when 5
-											classList = 'info'
-										when 6
-											classList = 'info'
-										when 7
-											classList = 'info'
-										when 24
-											classList = 'info'
-										when 87
-											classList = 'info'
-										when 88
-											classList = 'info'
-										when 89
-											classList = 'info'
-										default
-											classList = 'info'
-
 									tr(class="#{classList}")
 										td #{ref.id_crypto}
 										td #{ref.referenciado.cpf}
@@ -76,13 +58,20 @@ block content
 										td #{ref.resposta.transaction.status_name}
 										td #{ref.resposta.token_transaction}
 										td
-											form(method="get", action="http://checkout.sandbox.tray.com.br/payment/transaction/#{ref.resposta.token_transaction}", target="_blank")
-												input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
-												input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
-												input(type="hidden", name="type_response", value="J")
-												input(type="submit", class="btn btn-default btn-xs", name="submit", value="Finalizar Pagamento")
+											div(class="btn-group")
+												button(type="button", class="btn btn-primary dropdown-toggle btn-xs", data-toggle="dropdown") Ações  
+													span(class="caret")
+												ul(class="dropdown-menu pull-right")
+													li
+														a(href="#" class="semlinha") Enviar cobrança por email
+													
+													//- form(method="get", action="http://checkout.sandbox.tray.com.br/payment/transaction/#{ref.resposta.token_transaction}", target="_blank")
+													//- 	input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
+													//- 	input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
+													//- 	input(type="hidden", name="type_response", value="J")
+													//- 	input(type="submit", class="btn btn-default btn-xs", name="submit", value="Finalizar Pagamento")
 								else
-									tr(class="danger")
+									tr()
 										td #{ref.id_crypto}
 										td #{ref.referenciado.cpf}
 										td #{ref.referenciado.email}
@@ -90,15 +79,25 @@ block content
 										td 
 										td 
 										td
-											form(method="post", action="https://checkout.sandbox.tray.com.br/payment/transaction", target="_blank")
-												input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
-												input(type="hidden", name="transaction_product[][description]", value="Cadastro DirectMed")
-												input(type="hidden", name="transaction_product[][quantity]", value="1")
-												input(type="hidden", name="transaction_product[][price_unit]", value="40.00")
-												input(type="hidden", name="order_number", value="#{ref.id_crypto}")
-												input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
-												input(type="hidden", name="type_response", value="J")
-												input(type="submit", class="btn btn-default btn-xs", name="submit", value="Pagar!!")
+											div(class="btn-group")
+												button(type="button", class="btn btn-primary dropdown-toggle btn-xs", data-toggle="dropdown") Ações  
+													span(class="caret")
+												ul(class="dropdown-menu pull-right")
+													li
+														a(href="#" class="semlinha") Enviar cobrança por email
+													li
+														a(href="#" class="semlinha") Visualizar
+													li
+														form(method="post", action="https://checkout.sandbox.tray.com.br/payment/transaction", target="_blank")
+															input(type="hidden", name="token_account", value="7fe49d0444e9ba9")
+															input(type="hidden", name="transaction_product[][description]", value="Cadastro DirectMed")
+															input(type="hidden", name="transaction_product[][quantity]", value="1")
+															input(type="hidden", name="transaction_product[][price_unit]", value="40.00")
+															input(type="hidden", name="order_number", value="#{ref.id_crypto}")
+															input(type="hidden", name="url_notification", value="http://directmed.herokuapp.com/financeiro/resposta")
+															input(type="hidden", name="type_response", value="J")
+														a(class="semlinha", href="#") Pagar!!
+
 				ul(class="pagination pagination-sm pull-right")
 					li(class="disabled")
 						a(href="#") «

@@ -1,0 +1,78 @@
+
+extends ../layout
+
+block content
+	div(class="row")
+		div(class="col-md-12")
+			h4 Usuário - #{usuario.nome}
+		div(class="col-md-12")
+			a(href="/user/#{usuario._id}/editar", class="btn btn-primary btn-xs") Editar
+		div(class="col-md-12")
+			hr
+		div(class="col-md-12")
+			dir(class="row")
+				div(class="col-md-12")
+					form(class="form-horizontal", role="form")
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Nome
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.nome}
+						
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Email
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.email}
+						
+						div(class="form-group")
+							label(class="col-sm-2 control-label") CPF
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.cpf}
+						
+						div(class="form-group")
+							label(class="col-sm-2 control-label") CNPJ
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.cnpj}
+						
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Data de Nascimento
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.data_nascimento}
+						
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Sexo
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.sexo}
+						
+						div(class="form-group")
+							label(class="col-sm-2 control-label") CEP
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.endereco.cep}
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Endereço / Nº
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.endereco.endereco} / #{usuario.endereco.numero} 
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Complemento
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.endereco.complemento}
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Bairro
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.endereco.bairro}
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Cidade/ Estado
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.endereco.cidade} / #{usuario.endereco.estado} 
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Telefone Fixo
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.telefone.ddd_fixo} #{usuario.telefone.telefone_fixo}  
+						div(class="form-group")
+							label(class="col-sm-2 control-label") Telefone Celular
+							div(class="col-sm-10")
+								p(class="form-control-static") #{usuario.telefone.ddd_celular} #{usuario.telefone.telefone_celular}  
+						div(class="form-group")
+							label(class="col-sm-2 control-label") 
+							div(class="col-sm-10")
+								a(href="/user/#{usuario._id}/editar", class="btn btn-primary") Editar  
+						

@@ -1,8 +1,10 @@
 module.exports = function(app){
-	var ref = app.controllers.referenciados;
+	
+	var autenticar = require('./../middleware/autenticador'),
+		ref = app.controllers.referenciados; 
 
-	app.get('/referenciados', ref.index);
-	app.get('/referenciado/cadastrar', ref.cadastrar);
-	app.post('/referenciado/add', ref.add);
+	app.get('/referenciados', autenticar.loginSistema, ref.index);
+	app.get('/referenciado/cadastrar', autenticar.loginSistema, ref.cadastrar);
+	app.post('/referenciado/add', autenticar.loginSistema, ref.add);
 
 }

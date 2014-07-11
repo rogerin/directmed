@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+	div(class="row")
+		div(class="col-md-12")
+			h4 Usuários cadastrados
+		div(class="col-md-12")
+			a(class="btn btn-primary btn-xs", href="/user/cadastrar") Novo usuário
+		div(class="col-md-12")
+			hr
+		div(class="col-md-12")
+		
+		if users
+			div(class="table-responsive")
+				table(class="table table-condensed table-striped")
+					thead
+						tr
+							th Nome
+							th E-Mail
+							th Tipo
+							th Status
+							th Ações
+					tbody
+						each u in users
+							tr
+								td <a href="/user/#{u._id}/visualizar"> #{u.nome} </a>
+								td #{u.email}
+								td 
+									each tipo in u.tipo_user
+										case tipo
+											when 1
+												span [Admin]
+											when 2
+												span [User]
+											when 3
+												span [Referenciado]
+											when 4
+												span [User-Referenciado]
+											when 5
+												span [Cliente]
+											default
+												span [error]
+
+								td 
+									if u.ativo
+										span(class="label label-success") Ativo
+									else
+										span(class="label label-danger") Inativo
+
+								td
+									div(class="btn-group")
+										button(type="button", class="btn btn-primary dropdown-toggle btn-xs", data-toggle="dropdown") Ações  
+											span(class="caret")
+										ul(class="dropdown-menu")
+											li
+												a(href="/user/#{u._id}/deletar" class="semlinha") Deletar
+											li
+												a(href="/user/#{u._id}/editar" class="semlinha") Editar
+											li
+												a(href="/user/#{u._id}/visualizar" class="semlinha") Visualizar
+
+
+		else
+			h4 Nenhum cadastro.

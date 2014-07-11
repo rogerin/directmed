@@ -5,10 +5,12 @@ module.exports = function(app){
 
 	app.get('/login', login.login);
 	app.get('/logout', login.logout);
+	app.get('/erro-login', login.errorLogin);
+
 
 	app.post('/login', passport.authenticate('local',{
 		successRedirect: '/',
-		failureRedirect: '/login'
+		failureRedirect: '/erro-login'
 	}));
 
 }
