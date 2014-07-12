@@ -4,6 +4,7 @@ module.exports = function(app){
 	
 
 	app.get('/', autenticar.loginSistema,home.index);
-	app.get('/solicitar-directmed', autenticar.loginSistema,home.formContato);
+	app.get('/solicitar-directmed', autenticar.loginSistema, home.formContato);
+	app.get('/confirmar-solicitacao', autenticar.loginSistema, home.confirmarSolicitacao)
 
 }
