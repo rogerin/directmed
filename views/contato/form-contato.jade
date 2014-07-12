@@ -16,7 +16,8 @@ block content
 								span Nome: #{user.nome} <br/> 
 								span E-Mail: #{user.email} <br/> 
 								span Telefones: #{user.telefone.ddd_fixo} #{user.telefone.telefone_fixo} / #{user.telefone.ddd_celular} #{user.telefone.telefone_celular} <br/>
-								span Endereço: #{user.endereco.endereco}, #{user.endereco.numero}, #{user.endereco.bairro}, #{user.endereco.cidade} - #{user.endereco.estado}, #{user.endereco.cep}
+								if user.endereco
+									span Endereço: #{user.endereco.endereco}, #{user.endereco.numero}, #{user.endereco.bairro}, #{user.endereco.cidade} - #{user.endereco.estado}, #{user.endereco.cep}
 								span 
 									a(href="/confirmar-solicitacao", class="btn btn-success") Confirmar solicitação
 								span
