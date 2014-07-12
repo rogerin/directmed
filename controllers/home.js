@@ -23,8 +23,14 @@ module.exports = function(app){
 			    }
 			});
 
-			var texto = 'Idenrificação do usuário: ' + req.user._id + '<br/> Nome:   ' + req.user.nome + '<br/> E-Mail: ' + req.user.email+ '<br/> Telefones: ' + req.user.telefone.ddd_fixo +' ' + req.user.telefone.telefone_fixo + ' / ' + req.user.telefone.ddd_celular + ' ' + req.user.telefone.telefone_celular + '<br/> Endereço: ' + req.user.endereco.endereco + ', ' + req.user.endereco.numero + ', ' + req.user.endereco.bairro + ', ' + req.user.endereco.cidade + ' - ' + req.user.endereco.estado + ', ' + req.user.endereco.cep + ' <br/>';
+			if(req.user.endereco) {
+				var texto = 'Idenrificação do usuário: ' + req.user._id + '<br/> Nome:   ' + req.user.nome + '<br/> E-Mail: ' + req.user.email+ '<br/> Telefones: ' + req.user.telefone.ddd_fixo +' ' + req.user.telefone.telefone_fixo + ' / ' + req.user.telefone.ddd_celular + ' ' + req.user.telefone.telefone_celular + '<br/> Endereço: ' + req.user.endereco.endereco + ', ' + req.user.endereco.numero + ', ' + req.user.endereco.bairro + ', ' + req.user.endereco.cidade + ' - ' + req.user.endereco.estado + ', ' + req.user.endereco.cep + ' <br/>';
+			}
+			else {
+				var texto = 'Idenrificação do usuário: ' + req.user._id + '<br/> Nome:   ' + req.user.nome + '<br/> E-Mail: ' + req.user.email+ '<br/> Telefones: ' + req.user.telefone.ddd_fixo +' ' + req.user.telefone.telefone_fixo + ' / ' + req.user.telefone.ddd_celular + ' ' + req.user.telefone.telefone_celular + '<br/> ';
+			}
 
+			
 			var mailOptions = {
 			    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
 			    to: "geriofilho@gmail.com", // list of receivers
