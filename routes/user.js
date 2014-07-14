@@ -7,6 +7,10 @@ module.exports = function(app){
 
 	app.get('/users', autenticar.loginSistema, user.index);
 	app.get('/user/:id/visualizar', autenticar.loginSistema, user.visualizar);
+	app.get('/user/:id/editar', autenticar.loginSistema, user.editar);
+	app.post('/user/update', autenticar.loginSistema, user.update);
+
+
 
 	app.post('/user', user.add);
 

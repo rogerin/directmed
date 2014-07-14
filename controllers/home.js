@@ -8,7 +8,7 @@ module.exports = function(app){
 		},
 		formContato: function(req, res){
 			res.render('contato/form-contato', {
-				menu: 'config',
+				menu: 'resumo',
 				user: req.user
 			});
 		},
@@ -50,7 +50,17 @@ module.exports = function(app){
 					res.redirect('/');
 			    }	
 			});
-		}
+		},
+		solicitarReferenciado: function(req, res){
+			res.render('referenciado/solicitar-referenciado', {
+				menu: 'resumo',
+				user: req.user
+			});
+		},
+		confirmarReferenciado: function(req, res){
+
+		},
+
 
 	}
 

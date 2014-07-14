@@ -33,6 +33,8 @@ module.exports = function(app){
 		data_nascimento: String,
 
 		tipo_user: [{ type: Number, default: 2 }],
+
+		status_cartao: { type: Number, default: 0 },
 		
 		endereco: {
 		    cep: String,

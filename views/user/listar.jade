@@ -18,6 +18,7 @@ block content
 							th Nome
 							th E-Mail
 							th Tipo
+							th Status Cartão
 							th Status
 							th Ações
 					tbody
@@ -40,6 +41,20 @@ block content
 												span [Cliente]
 											default
 												span [error]
+
+								td
+									case u.status_cartao
+										when 0
+											span Não solicitado
+										when 1
+											span Solicitado
+										when 2
+											span Enviado
+										when 3
+											span Em uso
+										default
+											span error
+
 
 								td 
 									if u.ativo

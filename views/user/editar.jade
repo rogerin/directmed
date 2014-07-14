@@ -1,0 +1,148 @@
+extends ../layout
+
+block content
+	h3 Editar Perfil ( <a href="/user/#{user._id}/visualizar"> #{usuario.nome} </a>)
+	hr
+	dir(class="row")
+		div(class="col-md-12")
+		form(role="form", method="POST", action="/user/update")
+			input(type="hidden", name="_id", value="#{usuario._id}")
+			div(class="col-md-4")
+				div(class="form-group")
+					label(for="nome") Nome
+					if (usuario.nome)
+						input(type="text", class="form-control", name="nome", value="#{usuario.nome}" )
+					else 
+						input(type="text", class="form-control", name="nome", placeholder="Nome", value="" )
+				div(class="form-group")
+					label(for="cpf") CPF
+					if (usuario.cpf)
+						input(type="text", class="form-control", name="cpf", value="#{usuario.cpf}")
+					else 
+						input(type="text", class="form-control", name="cpf", placeholder="000.000.000-00")
+
+				div(class="form-group")
+					label(for="cnpj") CNPJ
+					if (usuario.cnpj)
+						input(type="text", class="form-control", name="cnpj", value="#{usuario.cnpj}")
+					else
+						input(type="text", class="form-control", name="cnpj", placeholder="CNPJ")
+				div(class="form-group")
+					label(for="data_nascimento") Data de Nascimento
+					if (usuario.data_nascimento)
+						input(type="text", class="form-control", name="data_nascimento", value="#{usuario.data_nascimento}")
+					else
+						input(type="text", class="form-control", name="data_nascimento", placeholder="dia/mes/ano")
+				div(class="form-group")
+					label(for="sexo") Sexo
+					if (usuario.sexo)
+						select(id="sexo", class="form-control", name="sexo")
+							for item in itens
+								option(selected=item == usuario.sexo, value="#{item}") #{item}
+					else 
+						select(id="sexo", class="form-control", name="sexo")
+							for item in itens
+								option(selected=item == usuario.sexo, value="#{item}") #{item}
+
+
+			div(class="col-md-4")
+				div(class="form-group")
+					label(for="cep") CEP
+					if (usuario.endereco.cep)
+						input(type="text", class="form-control", name="cep", value="#{usuario.endereco.cep}")
+					else
+						input(type="text", class="form-control", name="cep", placeholder="CEP")
+
+				div(class="form-group")
+					label(for="endereco") Endereço / Numero
+					div(class="row")
+						div(class="col-xs-9")
+							if (usuario.endereco.endereco)
+								input(type="text", class="form-control", name="endereco", value="#{usuario.endereco.endereco}")
+							else
+								input(type="text", class="form-control", name="endereco", placeholder="Rua Endereço exemplo")
+						div(class="col-xs-3")
+							if (usuario.endereco.numero)
+								input(type="text", class="form-control", name="numero", value="#{usuario.endereco.numero}")
+							else
+								input(type="text", class="form-control", name="numero", placeholder="Nº")
+
+
+				div(class="form-group")
+					label(for="complemento") Complemento
+					if (usuario.endereco.complemento)
+						input(type="text", class="form-control", name="complemento", value="#{usuario.endereco.complemento}")
+					else
+						input(type="text", class="form-control", name="complemento", placeholder="Complemento")
+				div(class="form-group")
+					label(for="bairro") Bairro
+					if (usuario.endereco.bairro)
+						input(type="text", class="form-control", name="bairro", value="#{usuario.endereco.bairro}")
+					else
+						input(type="text", class="form-control", name="bairro", placeholder="Bairro")
+				
+				div(class="form-group")
+					label(for="cidade") Cidade / Estado
+					div(class="row")
+						div(class="col-xs-9")
+							if (usuario.endereco.cidade)
+								input(type="text", class="form-control", name="cidade", value="#{usuario.endereco.cidade}")
+							else
+								input(type="text", class="form-control", name="cidade", placeholder="Cidade")
+						div(class="col-xs-3")
+							if (usuario.endereco.estado)
+								input(type="text", class="form-control", name="estado", value="#{usuario.endereco.estado}")
+							else
+								input(type="text", class="form-control", name="estado", placeholder="UF")
+
+
+			div(class="col-md-4")
+				div(class="form-group")
+					label(for="email") E-mail
+					if (usuario.email)
+						input(type="email", class="form-control", name="email", value="#{usuario.email}")
+					else
+						input(type="email", class="form-control", name="email", value="exemplo@email.com")
+
+				div(class="form-group")
+					label(for="ddd_fixo") Telefone FIXO					
+					div(class="row")
+						div(class="col-xs-3")
+							if (usuario.telefone.ddd_fixo)
+								input(type="text", class="form-control", name="ddd_fixo", value="#{usuario.telefone.ddd_fixo}")
+							else
+								input(type="text", class="form-control", name="ddd_fixo", placeholder="88")
+
+						div(class="col-xs-9")
+							if (usuario.telefone.telefone_fixo)
+								input(type="text", class="form-control", name="telefone_fixo", value="#{usuario.telefone.telefone_fixo}")
+							else
+								input(type="text", class="form-control", name="telefone_fixo", placeholder="0000-0000")
+
+					
+				div(class="form-group")
+					label(for="ddd_celular") DDD Celular
+					div(class="row")
+						div(class="col-xs-3")
+							if (usuario.telefone.ddd_celular)
+								input(type="text", class="form-control", name="ddd_celular", value="#{usuario.telefone.ddd_celular}")
+							else
+								input(type="text", class="form-control", name="ddd_celular", placeholder="88")
+
+						div(class="col-xs-9")
+							if (usuario.telefone.telefone_celular)
+								input(type="text", class="form-control", name="telefone_celular", value="#{usuario.telefone.telefone_celular}")
+							else
+								input(type="text", class="form-control", name="telefone_celular", placeholder="0000-0000")
+
+				div(class="form-group")
+					label(for="senha") Senha
+					input(type="password", class="form-control", id="password", placeholder="Sua senha", name="password", required)
+				div(class="form-group")
+					label(for="password_confirm") Confirme a senha
+					input(type="password", class="form-control", id="password_confirm", placeholder="Confirme sua senha",oninput="validaSenha(this)", required)
+
+				button(type="submit", class="btn btn-primary pull-right") Editar
+
+block script
+	script(src="/javascripts/validarForm.js")
