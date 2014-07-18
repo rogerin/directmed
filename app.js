@@ -18,7 +18,7 @@ mongoose.connect('mongodb://rogerio:yolanda@mongo.onmodulus.net:27017/un3uhoQo',
     if( err ) {
         console.log("Error conectar mongo db: " + err);
     } else {
-        console.log("Conexao realizada com sucesso: " + err);
+        console.log("Conexao realizada com sucesso!");
     }
 });
 

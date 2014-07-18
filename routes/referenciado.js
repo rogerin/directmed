@@ -6,5 +6,6 @@ module.exports = function(app){
 	app.get('/referenciados', autenticar.loginSistema, ref.index);
 	app.get('/referenciado/cadastrar', autenticar.loginSistema, ref.cadastrar);
 	app.post('/referenciado/add', autenticar.loginSistema, ref.add);
+	app.get('/referenciado/:id/solicitar', autenticar.loginSistema, ref.solicitar);
 
 }

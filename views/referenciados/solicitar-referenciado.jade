@@ -3,11 +3,11 @@ extends ../layout
 block content
 	div(class="row")
 		div(class="col-md-12")
-			h4 Solicite seu cartão DirectMED
+			h4 Tornar-se um Referenciado
 		div(class="col-md-12")
 			hr
 		div(class="col-md-12")
-			p Estamos passando por modificações em nosso sistema e as solicitações de cartões pelo nosso sistema esta fora do ar, peço que preencha os dados corretamente do formulário abaixo que nossos consultores entraram em contato o mais rápido possivel.
+			p Text com detalhes. etc.
 			form(role="form")
 					div(class="row")
 						div(class="col-md-6")
@@ -19,7 +19,7 @@ block content
 								if user.endereco
 									span Endereço: #{user.endereco.endereco}, #{user.endereco.numero}, #{user.endereco.bairro}, #{user.endereco.cidade} - #{user.endereco.estado}, #{user.endereco.cep}
 									p
-										a(href="/confirmar-solicitacao", class="btn btn-success") Confirmar solicitação
+										a(href="/referenciado/#{user._id}/solicitar", class="btn btn-success") Confirmar solicitação
 								else
 									p Não identificamos seus dados de endereço, edite seu cadastro e preencha os dados corretamente para continuar com a solicitação.
 									a(href="/user/#{user._id/editar", class="btn btn-success") Editar Perfil

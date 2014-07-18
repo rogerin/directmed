@@ -52,7 +52,7 @@ module.exports = function(app){
 			});
 		},
 		solicitarReferenciado: function(req, res){
-			res.render('referenciado/solicitar-referenciado', {
+			res.render('referenciados/solicitar-referenciado', {
 				menu: 'resumo',
 				user: req.user
 			});
