@@ -1,15 +1,19 @@
 extends layout
 
 block content
+	p #{referenciado}
 	if user.is_admin
 		p implementar admni em breve.
+		p #{config.pagamento.teste.url_assinatura}
+		p #{config.pagamento.teste.token}
+
 	else
 		div(class="row")
 			div(class="col-md-8")
 				div(class="panel panel-default")
 					div(class="panel-heading")
 						h3(class="panel-title") ATENÇÃO!
-					div(class="panel-body") Seu cadastro ainda não esta finalizardo! notamos que você esta com 20% do cadastro concluido.  <a href="#">Finalizar cadastro</a>.
+					div(class="panel-body") Seu cadastro ainda não esta finalizardo! notamos que você esta com 20% do cadastro concluido.  <a href="#">Finalizar cadastro</a>. 
 
 
 			div(class="col-md-4")

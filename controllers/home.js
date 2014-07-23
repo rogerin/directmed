@@ -1,10 +1,24 @@
 module.exports = function(app){
+	var User	= app.models.user;
+	var Cobranca= app.models.cobranca;
+
+	var config = require("../config/config.json");
+
 	var HomeController = {
 		index: function(req,res){
-			res.render('index', {
-				menu: 'resumo',
-				user: req.user
-			});
+			var c = Cobranca.findOne({ 'user': req.user._id });
+
+
+			res.render('index', 
+				{	
+					menu: 'index',
+					user: req.user,
+					config: config,
+					cobranca: c,
+					total_faturas: c.length,
+					referenciado: (req.user.profissao == "")
+				}
+			);
 		},
 		formContato: function(req, res){
 			res.render('contato/form-contato', {

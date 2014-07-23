@@ -1,6 +1,8 @@
 module.exports = function(app){
-	var pass = require('./../middleware/password'),
-		User	= app.models.user; 
+	var User	= app.models.user; 
+	var Ref	= app.models.referenciado; 
+	var pass = require('./../middleware/password');
+
 
 	var UserController = {
 		index: function(req,res){
@@ -27,12 +29,14 @@ module.exports = function(app){
 		add: function(req,res){
 			var u = new User;
 
+
 			u.nome				= req.body.nome;
 			u.cpf				= req.body.cpf;
 			u.cnpj 				= req.body.cnpj;
 			u.data_nascimento	= req.body.data_nascimento;
 			u.sexo 				= req.body.sexo;
-			u.tipo_user			= 2;
+			u.email 			= req.body.email;
+			u.password 			= pass.hash(req.body.password);
 			u.endereco.cep 		= req.body.cep;
 			u.endereco.endereco = req.body.endereco;
 			u.endereco.numero 	= req.body.numero;
@@ -40,25 +44,29 @@ module.exports = function(app){
 			u.endereco.cidade 	= req.body.cidade;
 			u.endereco.estado 	= req.body.estado;
 			u.endereco.complemento= req.body.complemento;
-
-
-			u.email 			= req.body.email;
-				
-			u.telefone.ddd_fixo 	= req.body.ddd_fixo;
-			u.telefone.telefone_fixo= req.body.telefone_fixo;
 			
-			u.telefone.ddd_celular 	= req.body.ddd_celular;
+			u.telefone.ddd_fixo 		= req.body.ddd_fixo;
+			u.telefone.telefone_fixo	= req.body.telefone_fixo;
+			u.telefone.ddd_celular 		= req.body.ddd_celular;
 			u.telefone.telefone_celular = req.body.telefone_celular;
 			
-			u.password 			= pass.hash(req.body.password);
+			u.profissao 		= req.body.profissao;
+			u.numero_conselho	= req.body.numero_conselho;
+			u.estado_conselho	= req.body.estado_conselho;
+			u.nome_divulgacao	= req.body.nome_divulgacao;
+			u.especialidade		= req.body.especialidade;
+			u.servico_medicos	= req.body.servico_medicos;
+			u.especialidade_medicos		= req.body.especialidade_medicos;
+			u.especialidade_odontologia	= req.body.especialidade_odontologia;
+			u.outro = req.body.outro;
 			
-			u.save(function(err, result){
+			u.save(function(err, user){
 				if(err) {
 					req.flash('info', 'Erro:' + err);
 					res.redirect('/');
 				} else {
-					req.flash('info', 'Sucesso ao cadastrar novo usuário: ' + result.nome);
-					res.redirect('/user/'+result._id+'/visualizar'); 
+					req.flash('info', 'Sucesso ao cadastrar novo usuario:' + user.nome);
+					res.redirect('/');
 				}
 			});
 
@@ -133,10 +141,72 @@ module.exports = function(app){
 						)
 					}
 				})
-			})
+			});
+		},
+		add_cadastro: function(req,res){
+
+			var Cobranca= app.models.cobranca;
+
+
+			res.writeHead(200, { 'Content-Type': 'application/json' });   			
+
+			var u = new User;
+
+
+			u.nome				= req.body.nome;
+			u.cpf				= req.body.cpf;
+			u.cnpj 				= req.body.cnpj;
+			u.data_nascimento	= req.body.data_nascimento;
+			u.sexo 				= req.body.sexo;
+			u.email 			= req.body.email;
+			u.password 			= pass.hash(req.body.password);
+			u.endereco.cep 		= req.body.cep;
+			u.endereco.endereco = req.body.endereco;
+			u.endereco.numero 	= req.body.numero;
+			u.endereco.bairro 	= req.body.bairro;
+			u.endereco.cidade 	= req.body.cidade;
+			u.endereco.estado 	= req.body.estado;
+			u.endereco.complemento= req.body.complemento;
+			
+			u.telefone.ddd_fixo 		= req.body.ddd_fixo;
+			u.telefone.telefone_fixo	= req.body.telefone_fixo;
+			u.telefone.ddd_celular 		= req.body.ddd_celular;
+			u.telefone.telefone_celular = req.body.telefone_celular;
+			
+			u.profissao 		= req.body.profissao;
+			u.numero_conselho	= req.body.numero_conselho;
+			u.estado_conselho	= req.body.estado_conselho;
+			u.nome_divulgacao	= req.body.nome_divulgacao;
+			u.especialidade		= req.body.especialidade;
+			u.servico_medicos	= req.body.servico_medicos;
+			u.especialidade_medicos		= req.body.especialidade_medicos;
+			u.especialidade_odontologia	= req.body.especialidade_odontologia;
+			u.outro = req.body.outro;
+
+			u.save(function(err, user){
+				if(err) { 
+
+					res.write(JSON.stringify({ result: "ERROR", msg: "ERROR" }));
+					res.end();
+				}
+				else {
+					var c = new Cobranca;
+					c.user = user._id;
+
+					if(req.body.tipo_user == 1) {
+						c.tipo = 1;
+					} else {
+						c.tipo =2;
+					}
+
+					c.save();
+
+
+					res.write(JSON.stringify({ result: "OK", msg: "Sucesso", user: user }));
+					res.end();
+				}
+			});
 		}
-
-
 	};
 
 	return UserController;

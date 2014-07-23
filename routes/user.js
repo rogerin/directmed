@@ -13,6 +13,9 @@ module.exports = function(app){
 
 
 	app.post('/user', user.add);
+	app.post('/user/cadastrar', user.add_cadastro);
+
+
 
 	app.get('/user/cadastrar', autenticar.loginSistema, user.cadastrar);
 }

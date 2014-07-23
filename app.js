@@ -13,6 +13,7 @@ var express			= require('express'),
 	passportHttp  	= require('passport-http'),
 	flash  			= require('express-flash');
 
+
 //mongoose.connect('mongodb://localhost/directmed', function(err){
 mongoose.connect('mongodb://rogerio:yolanda@mongo.onmodulus.net:27017/un3uhoQo', function(err){
     if( err ) {
@@ -22,7 +23,14 @@ mongoose.connect('mongodb://rogerio:yolanda@mongo.onmodulus.net:27017/un3uhoQo',
     }
 });
 
-var db = mongoose.connect;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function callback () {
+	console.log('Conexao realizada!');
+});
+
+
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -64,6 +72,8 @@ passport.use(new passportHttp.BasicStrategy(verificaLogin));
 function verificaLogin(username, password, done){
 	var pass = require('./middleware/password');
 	var User = app.models.user;
+
+
 	User.findOne({ 'email': username }, function (err, result) {
 		if(err) { console.log("ERROR: " + err); }
 		else {
