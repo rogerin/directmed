@@ -106,13 +106,16 @@ module.exports = function(app){
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 							        	Cobranca.findById(req.body.transaction.order_number, function(err, c){
-											c.resposta 		= resp._id;
-											c.status_id 	= req.body.transaction.status_id;
-											c.status_name 	= req.body.transaction.status_name;
-											c.save(function(err){
-												if(err) { console.log('ERROR: ' + err) }
-												else { console.log('FINANCEIRO ATUALIZADO') }
-											});
+							        		if(err) { console.log(err);}
+							        		else {
+												c.resposta 		= resp._id;
+												c.status_id 	= req.body.transaction.status_id;
+												c.status_name 	= req.body.transaction.status_name;
+												c.save(function(err){
+													if(err) { console.log('ERROR: ' + err) }
+													else { console.log('FINANCEIRO ATUALIZADO') }
+												});
+											}
 										});
 							        }
 							    });
