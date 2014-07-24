@@ -106,7 +106,7 @@ module.exports = function(app){
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 
-							        	Cobranca.findOne({"_id": req.body.transaction.order_number}}, function(err, c){
+							        	Cobranca.findOne({"_id": req.body.transaction.order_number}, function(err, c){
 							        		if(err) { console.log(err);}
 							        		else {
 
