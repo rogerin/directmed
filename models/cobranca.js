@@ -3,6 +3,7 @@ module.exports = function(app){
 
 	var Schema = mongoose.Schema;
 	var ObjectId = mongoose.Schema.Types.ObjectId;
+
 	
 	var cobranca = new Schema({
 		user: 		{ type: ObjectId, ref: 'User' },

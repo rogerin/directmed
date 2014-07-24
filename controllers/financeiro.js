@@ -105,10 +105,15 @@ module.exports = function(app){
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
+
 							        	Cobranca.findById(req.body.transaction.order_number, function(err, c){
 							        		if(err) { console.log(err);}
 							        		else {
-												c.resposta 		= resp._id;
+
+							        			var mongoose = require('mongoose');
+							        	
+							        	
+												c.resposta 		= mongoose.Types.ObjectId.fromString(resp._id);
 												c.status_id 	= req.body.transaction.status_id;
 												c.status_name 	= req.body.transaction.status_name;
 												c.save(function(err){
