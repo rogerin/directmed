@@ -21,26 +21,34 @@ module.exports = function(app){
 
 			var cobranca = null;
 
-			Cobranca.find({ 'user': req.user._id }, function(err,result){
-				if (err) {
-						console.log(err);
-				}
-				else {
-					//console.log("Sucesso" + result);
-					res.render('index', 
+
+
+			Cobranca
+				.find({ 'user': req.user._id })
+				.populate('user')
+				.populate('resposta')
+				.exec(function (err, cobranca) {
+				  if (err) {
+				  	console.log(err);
+				  	res.send(err);
+				  } else {
+			  		console.log(cobranca);
+					  res.render('index', 
 						{	
 							menu: 'index',
 							user: req.user,
 							config: config,
-							cobranca: result,
+							cobranca: cobranca,
 							url_transasao: url_transasao,
 							token: token,
 							url_resposta: config.url_notification,
-							total_cobranca: result.length
+							total_cobranca: cobranca.length
 						}
+				  
 					);
 				}
 			});
+
 
 			
 		},

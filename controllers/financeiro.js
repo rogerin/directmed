@@ -12,19 +12,19 @@ module.exports = function(app){
 	var FinanceiroController = {
 		index: function(req,res){
 			//req.flash('info', 'logout com sucesso');
-			Financeiro
+			Cobranca
 				.find()
-				.populate('referenciado')
+				.populate('user')
 				.populate('resposta')
-				.exec(function (err, financeiro) {
+				.exec(function (err, cobranca) {
 				  if (err) {
 				  	console.log(err);
 				  	res.send(err);
 				  } else {
-				  		console.log(financeiro);
+				  		console.log(cobranca);
 					  res.render('financeiro/listar', {
 					  	menu: 'financeiro',
-					  	financeiro: financeiro,
+					  	cobranca: cobranca,
 						user: req.user 
 					  });
 				  }
@@ -100,13 +100,13 @@ module.exports = function(app){
 							result.transaction.payment.card_id 					= req.body.transaction.payment.card_id;
 							result.transaction.payment.number_proccess 			= req.body.transaction.payment.number_proccess;
 
-							  result.save(function (err, resposta) {
+							  result.save(function (err, resp) {
 							        if(err) {
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 							        	Cobranca.findOne({'_id': req.body.transaction.order_number}, function(err, result){
-											result.resposta 	= resposta._id;
+											result.resposta 	= resp._id;
 											result.status_id 	= req.body.transaction.status_id;
 											result.status_name 	= req.body.transaction.status_name;
 											result.save(function(err){
