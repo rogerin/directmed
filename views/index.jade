@@ -1,11 +1,10 @@
 extends layout
 
 block content
-	p #{referenciado}
+
 	if user.is_admin
 		p implementar admni em breve.
-		p #{config.pagamento.teste.url_assinatura}
-		p #{config.pagamento.teste.token}
+
 
 	else
 		div(class="row")
@@ -13,9 +12,38 @@ block content
 				div(class="panel panel-default")
 					div(class="panel-heading")
 						h3(class="panel-title") ATENÇÃO!
-					div(class="panel-body") Seu cadastro ainda não esta finalizardo! notamos que você esta com 20% do cadastro concluido.  <a href="#">Finalizar cadastro</a>. 
+					div(class="panel-body") 
+						if total_cobranca
+							span Você tem um total de #{total_cobranca} cobranças.
+							//span #{cobranca}
+							
+							table(class="table table-condensed table-striped table-bordered")
+								thead
+									tr
+										th identificação
+										th Ação
+										
+								tbody
+									
+									each c in cobranca
+										if c.status != 6
+											tr 
+												td #{c._id} 
+												td
+
+													form(method="post", action="#{url_transasao}")
+														input(type="hidden", name="token_account", value="#{token}") 
+														input(type="hidden", name="transaction_product[][description]", value="Assinatura Referenciado DirectMed") 
+														input(type="hidden", name="transaction_product[][quantity]", value="1") 
+														input(type="hidden", name="transaction_product[][price_unit]", value="70.00") 
+														input(type="hidden", name="order_number", value="#{c._id}")
+														input(type="hidden", name="url_notification", value="#{url_resposta}")
+														input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
+						else
+							span sem cobranca
 
 
+						
 			div(class="col-md-4")
 				div(class="panel panel-default")
 					div(class="panel-heading")
@@ -48,4 +76,5 @@ block content
 				p 
 					a(href="/solicitar-referenciado", class="btn btn-success") Tornar-se um referenciado!
 
-
+block script
+	script(src="/javascripts/assinatura.js")

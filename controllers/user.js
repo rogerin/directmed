@@ -1,7 +1,6 @@
 module.exports = function(app){
 	var User	= app.models.user; 
 	var Ref	= app.models.referenciado; 
-	var pass = require('./../middleware/password');
 
 
 	var UserController = {
@@ -12,7 +11,7 @@ module.exports = function(app){
 				} else {
 					res.render('user/listar', 	{
 													menu: 'usuario',
-													users:users,
+													users: users,
 													user: req.user
 												}
 					);
@@ -126,7 +125,7 @@ module.exports = function(app){
 				u.telefone.ddd_celular 	= req.body.ddd_celular;
 				u.telefone.telefone_celular = req.body.telefone_celular;
 				
-				u.password 			= pass.hash(req.body.password);
+				u.password 			= req.body.password;
 
 
 				u.save(function(err, user){
@@ -159,7 +158,7 @@ module.exports = function(app){
 			u.data_nascimento	= req.body.data_nascimento;
 			u.sexo 				= req.body.sexo;
 			u.email 			= req.body.email;
-			u.password 			= pass.hash(req.body.password);
+			u.password 			= req.body.password;
 			u.endereco.cep 		= req.body.cep;
 			u.endereco.endereco = req.body.endereco;
 			u.endereco.numero 	= req.body.numero;

@@ -15,7 +15,7 @@ module.exports = function(app){
 		data_nascimento: 	{ type:String,	default: ""},
 		sexo: 				{ type:String,	default: ""},
 		email: 				{ type: String, unique: true },
-		password: 			{ type: String},
+		password: 			{ type: String, set: configPass},
 		endereco: {
 		    cep: 			{ type:String, 	default: ""},
 		    endereco: 		{ type:String, 	default: ""},

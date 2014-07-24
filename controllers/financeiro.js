@@ -2,6 +2,8 @@ module.exports = function(app){
 
 	var Referenciado = app.models.referenciado;
 	var Financeiro = app.models.financeiro;
+	var Cobranca = app.models.cobranca;
+
 	var Resposta = app.models.resposta;
 	var nodemailer = require("nodemailer");
 
@@ -103,7 +105,7 @@ module.exports = function(app){
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
-							        	Financeiro.findOne({'id_crypto': req.body.transaction.order_number}, function(err, result){
+							        	Cobranca.findOne({'_id': req.body.transaction.order_number}, function(err, result){
 											result.resposta = resposta._id;
 											result.save(function(err){
 												if(err) { console.log('ERROR: ' + err) }
@@ -202,7 +204,7 @@ module.exports = function(app){
 
 								} else {
 									console.log("SUCCESS!!");
-									Financeiro.findOne({'id_crypto': req.body.transaction.order_number}, function(err, result){
+									Cobranca.findOne({'_id': req.body.transaction.order_number}, function(err, result){
 										result.resposta = resposta._id;
 										result.save(function(err){
 											if(err) { console.log('ERROR: ' + err) }

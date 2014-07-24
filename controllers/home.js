@@ -6,19 +6,43 @@ module.exports = function(app){
 
 	var HomeController = {
 		index: function(req,res){
-			var c = Cobranca.findOne({ 'user': req.user._id });
+
+			var url_transasao;
+			var token;
+			if(config.producao) {
+				url_transasao 	= config.pagamento.producao.url_transasao;
+				token 			= config.pagamento.producao.token;
+			} else {
+				url_transasao 	= config.pagamento.teste.url_transasao;
+				token 			= config.pagamento.teste.token;
+
+			}
 
 
-			res.render('index', 
-				{	
-					menu: 'index',
-					user: req.user,
-					config: config,
-					cobranca: c,
-					total_faturas: c.length,
-					referenciado: (req.user.profissao == "")
+			var cobranca = null;
+
+			Cobranca.find({ 'user': req.user._id }, function(err,result){
+				if (err) {
+						console.log(err);
 				}
-			);
+				else {
+					//console.log("Sucesso" + result);
+					res.render('index', 
+						{	
+							menu: 'index',
+							user: req.user,
+							config: config,
+							cobranca: result,
+							url_transasao: url_transasao,
+							token: token,
+							url_resposta: config.url_notification,
+							total_cobranca: result.length
+						}
+					);
+				}
+			});
+
+			
 		},
 		formContato: function(req, res){
 			res.render('contato/form-contato', {
