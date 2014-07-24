@@ -105,11 +105,11 @@ module.exports = function(app){
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
-							        	Cobranca.findById(req.body.transaction.order_number, function(err, result){
-											result.resposta 	= resp._id;
-											result.status_id 	= req.body.transaction.status_id;
-											result.status_name 	= req.body.transaction.status_name;
-											result.save(function(err){
+							        	Cobranca.findById(req.body.transaction.order_number, function(err, c){
+											c.resposta 		= resp._id;
+											c.status_id 	= req.body.transaction.status_id;
+											c.status_name 	= req.body.transaction.status_name;
+											c.save(function(err){
 												if(err) { console.log('ERROR: ' + err) }
 												else { console.log('FINANCEIRO ATUALIZADO') }
 											});
@@ -206,11 +206,11 @@ module.exports = function(app){
 
 								} else {
 									console.log("SUCCESS!!");
-									Cobranca.findById(req.body.transaction.order_number, function(err, result){
-										result.resposta 	= resposta._id;
-										result.status_id 	= req.body.transaction.status_id;
-										result.status_name	= req.body.transaction.status_name;
-										result.save(function(err){
+									Cobranca.findById(req.body.transaction.order_number, function(err, c){
+										c.resposta 	= resposta._id;
+										c.status_id 	= req.body.transaction.status_id;
+										c.status_name	= req.body.transaction.status_name;
+										c.save(function(err){
 											if(err) { console.log('ERROR: ' + err) }
 											else { console.log('FINANCEIRO ATUALIZADO') }
 										});
