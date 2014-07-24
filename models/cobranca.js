@@ -8,6 +8,8 @@ module.exports = function(app){
 		user: { type: ObjectId, ref: 'User' },
 		resposta: { type: ObjectId, ref: 'Resposta' },
 		tipo: { type: Number, default: 1 },
+		status_id: { type: Number, default: 0 },
+		status_name: { type: String, default: ''},
 		status: { type: Number, default: 1 },
 		created_at: {type: Date, default: Date.now}
 	});
