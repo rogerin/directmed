@@ -25,7 +25,7 @@ block content
 								tbody
 									
 									each c in cobranca
-										if c.resposta
+										if !c.resposta
 											if c.status != 6
 												tr 
 													td #{c._id} 

@@ -105,7 +105,7 @@ module.exports = function(app){
 							            console.error('ERROR AO ATUALIZAR: ' + err);
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
-							        	Cobranca.findOne({'_id': req.body.transaction.order_number}, function(err, result){
+							        	Cobranca.findById(req.body.transaction.order_number, function(err, result){
 											result.resposta 	= resp._id;
 											result.status_id 	= req.body.transaction.status_id;
 											result.status_name 	= req.body.transaction.status_name;
@@ -206,7 +206,7 @@ module.exports = function(app){
 
 								} else {
 									console.log("SUCCESS!!");
-									Cobranca.findOne({'_id': req.body.transaction.order_number}, function(err, result){
+									Cobranca.findById(req.body.transaction.order_number, function(err, result){
 										result.resposta 	= resposta._id;
 										result.status_id 	= req.body.transaction.status_id;
 										result.status_name	= req.body.transaction.status_name;
