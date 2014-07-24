@@ -106,21 +106,11 @@ module.exports = function(app){
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 
-							        	var mongoose = require('mongoose');
-										var Schema = mongoose.Schema;
-										var ObjectId = Schema.ObjectId; 
-
-										var meuId = new ObjectId(req.body.transaction.order_number);
-
-							        	Cobranca.findById(meuId, function(err, c){
+							        	Cobranca.findOne({"_id": req.body.transaction.order_number}}, function(err, c){
 							        		if(err) { console.log(err);}
 							        		else {
 
-
-												var id = new ObjectId(resp._id);
-
-							        	
-												c.resposta 		= id;
+												c.resposta 		= resp;
 												c.status_id 	= req.body.transaction.status_id;
 												c.status_name 	= req.body.transaction.status_name;
 												c.save(function(err){
@@ -221,7 +211,7 @@ module.exports = function(app){
 
 								} else {
 									console.log("SUCCESS!!");
-									Cobranca.findById(req.body.transaction.order_number, function(err, c){
+									Cobranca.findOne({"_id": req.body.transaction.order_number}, function(err, c){
 										c.resposta 	= resposta._id;
 										c.status_id 	= req.body.transaction.status_id;
 										c.status_name	= req.body.transaction.status_name;
