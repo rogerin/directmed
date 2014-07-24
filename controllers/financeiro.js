@@ -106,13 +106,13 @@ module.exports = function(app){
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 
-							        	Cobranca.findOne({'_id': resp.transaction.order_number}, function(err, c){
+							        	Cobranca.findOne({'id_cobranca': resp.transaction.order_number}, function(err, c){
 							        		if(err) { 
 							        			console.log(err);
 							        		}
 							        		else {
 
-												c.resposta 		= resp;
+												c.resposta 		= resp._id;
 												c.status_id 	= req.body.transaction.status_id;
 												c.status_name 	= req.body.transaction.status_name;
 												c.save(function(err){
@@ -213,8 +213,8 @@ module.exports = function(app){
 
 								} else {
 									console.log("SUCCESS!!");
-									Cobranca.findOne({ "_id ": req.body.transaction.order_number }, function(err, c){
-										c.resposta 	= resposta;
+									Cobranca.findOne({ "id_cobranca ": req.body.transaction.order_number }, function(err, c){
+										c.resposta 	= resposta._id;
 										c.status_id 	= req.body.transaction.status_id;
 										c.status_name	= req.body.transaction.status_name;
 										c.save(function(err){

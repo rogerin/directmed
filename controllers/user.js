@@ -189,16 +189,19 @@ module.exports = function(app){
 					res.end();
 				}
 				else {
-					var c = new Cobranca;
-					c.user = user._id;
+					
+					Cobranca.count({}, function( err, count){
+						var c = new Cobranca;
+						c.user = user._id;
+						if(req.body.tipo_user == 1) {
+							c.tipo = 1;
+						} else {
+							c.tipo =2;
+						}
+						c.id_cobranca ="CM" + new Date().getFullYear() +"" +count;
+						c.save();
+					});
 
-					if(req.body.tipo_user == 1) {
-						c.tipo = 1;
-					} else {
-						c.tipo =2;
-					}
-
-					c.save();
 
 
 					res.write(JSON.stringify({ result: "OK", msg: "Sucesso", user: user }));
