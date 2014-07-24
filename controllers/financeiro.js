@@ -106,14 +106,13 @@ module.exports = function(app){
 							        } else {
 							        	console.log('ATUALIZADO COM SUCESSO!');
 
+
+
 							        	Cobranca.findById(req.body.transaction.order_number, function(err, c){
 							        		if(err) { console.log(err);}
 							        		else {
-
-							        			var mongoose = require('mongoose');
 							        	
-							        	
-												c.resposta 		= mongoose.Types.ObjectId.fromString(resp._id);
+												c.resposta 		= resp;
 												c.status_id 	= req.body.transaction.status_id;
 												c.status_name 	= req.body.transaction.status_name;
 												c.save(function(err){
