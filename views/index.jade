@@ -16,6 +16,11 @@ block content
 						if total_cobranca
 							span Você tem um total de #{total_cobranca} cobranças.
 							//span #{cobranca}
+
+							if cobranca.tipo == 1
+								p Ao pagar esta conta, entraremos em contato para enviar seu cartão. 
+							else
+
 							
 							table(class="table table-condensed table-striped table-bordered")
 								thead
@@ -28,7 +33,7 @@ block content
 										if !c.resposta
 											if c.status != 6
 												tr 
-													td #{c._id} 
+													td #{c.id_cobranca}
 													td
 
 														form(method="post", action="#{url_transasao}")
@@ -42,8 +47,9 @@ block content
 											else
 										else
 											tr
-												td #{c.resposta}
-												td
+												td #{c.resposta.transaction.order_number} - #{c.resposta.transaction.status_name}
+												td 
+													a(href="http://checkout.sandbox.tray.com.br/payment/transaction/#{c.resposta.transaction.token_transaction}", target="_blank") Pagar
 						else
 							span sem cobranca
 
@@ -69,17 +75,17 @@ block content
 						tr
 							td Vaucher:
 							td 0
-		div(class="row")
-			div(class="col-md-6")
-				h2 Solicitar Cartão DirectMed
-				p Solicite agora mesmo nosso cartão para você continuar usando nossos serviços.
-				p 
-					a(href="/solicitar-directmed", class="btn btn-success") Solicitar Cartão!
-			div(class="col-md-6")
-				h2 Seja um Referenciado
-				p Para ser nosso referenciado, você deve finalizar seu cadastro.
-				p 
-					a(href="/solicitar-referenciado", class="btn btn-success") Tornar-se um referenciado!
+		//- div(class="row")
+		//- 	div(class="col-md-6")
+		//- 		h2 Solicitar Cartão DirectMed
+		//- 		p Solicite agora mesmo nosso cartão para você continuar usando nossos serviços.
+		//- 		p 
+		//- 			a(href="/solicitar-directmed", class="btn btn-success") Solicitar Cartão!
+		//- 	div(class="col-md-6")
+		//- 		h2 Seja um Referenciado
+		//- 		p Para ser nosso referenciado, você deve finalizar seu cadastro.
+		//- 		p 
+		//- 			a(href="/solicitar-referenciado", class="btn btn-success") Tornar-se um referenciado!
 
 block script
 	script(src="/javascripts/assinatura.js")

@@ -196,7 +196,7 @@ module.exports = function(app){
 						if(req.body.tipo_user == 1) {
 							c.tipo = 1;
 						} else {
-							c.tipo =2;
+							c.tipo = 2;
 						}
 						c.id_cobranca ="CM" + new Date().getFullYear() +"" +count;
 						c.save();
