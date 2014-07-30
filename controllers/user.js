@@ -32,6 +32,8 @@ module.exports = function(app){
 			u.nome				= req.body.nome;
 			u.cpf				= req.body.cpf;
 			u.cnpj 				= req.body.cnpj;
+			u.razao 			= req.body.razao;
+
 			u.data_nascimento	= req.body.data_nascimento;
 			u.sexo 				= req.body.sexo;
 			u.email 			= req.body.email;
@@ -105,6 +107,7 @@ module.exports = function(app){
 				u.nome				= req.body.nome;
 				u.cpf				= req.body.cpf;
 				u.cnpj 				= req.body.cnpj;
+				u.razao 			= req.body.razao;
 				u.data_nascimento	= req.body.data_nascimento;
 				u.sexo 				= req.body.sexo;
 				u.tipo_user			= req.user.tipo_user;
@@ -155,6 +158,7 @@ module.exports = function(app){
 			u.nome				= req.body.nome;
 			u.cpf				= req.body.cpf;
 			u.cnpj 				= req.body.cnpj;
+			u.razao 			= req.body.razao;
 			u.data_nascimento	= req.body.data_nascimento;
 			u.sexo 				= req.body.sexo;
 			u.email 			= req.body.email;
@@ -195,10 +199,18 @@ module.exports = function(app){
 						c.user = user._id;
 						if(req.body.tipo_user == 1) {
 							c.tipo = 1;
+							c.id_cobranca ="CD" + new Date().getFullYear() +"" +count;
+						
 						} else {
 							c.tipo = 2;
+							c.id_cobranca ="RD" + new Date().getFullYear() +"" +count;
 						}
-						c.id_cobranca ="CM" + new Date().getFullYear() +"" +count;
+
+						/*
+							Cartao: CDM20149364756756
+							REF:    RDM
+						*/
+						
 						c.save();
 					});
 

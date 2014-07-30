@@ -1,12 +1,11 @@
 {
     "producao": true,
-    "url_notification": "http://directmed.herokuapp.com/financeiro/resposta",
+    "url_notification": "http://cpro22681.publiccloud.com.br/financeiro/resposta",
     "pagamento" : {
     	"producao": {
 			"url_transasao": "https://checkout.tray.com.br/payment/transaction",
             "token": "67b7932500e93b6"
     	},
-
     	"teste": {
     		"url_transasao": "https://checkout.sandbox.tray.com.br/payment/transaction",
             "token": "7fe49d0444e9ba9"

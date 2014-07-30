@@ -4,7 +4,7 @@ var express			= require('express'),
 	favicon 		= require('static-favicon'),
 	cookieParser 	= require('cookie-parser'),
 	bodyParser 		= require('body-parser'),
-	methodOverride = require('method-override'),
+	methodOverride  = require('method-override'),
 	expressSession 	= require('express-session'),
 	load 			= require('express-load'),
 	mongoose    	= require('mongoose'),
@@ -12,6 +12,7 @@ var express			= require('express'),
 	passportLocal 	= require('passport-local'),
 	passportHttp  	= require('passport-http'),
 	flash  			= require('express-flash');
+
 
 
 //mongoose.connect('mongodb://localhost/directmed', function(err){
