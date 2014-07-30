@@ -33,6 +33,7 @@ module.exports = function(app){
 			u.cpf				= req.body.cpf;
 			u.cnpj 				= req.body.cnpj;
 			u.razao 			= req.body.razao;
+			u.nome_responsavel	= req.body.nome_responsavel;
 
 			u.data_nascimento	= req.body.data_nascimento;
 			u.sexo 				= req.body.sexo;
@@ -108,6 +109,8 @@ module.exports = function(app){
 				u.cpf				= req.body.cpf;
 				u.cnpj 				= req.body.cnpj;
 				u.razao 			= req.body.razao;
+
+				u.nome_responsavel	= req.body.nome_responsavel;
 				u.data_nascimento	= req.body.data_nascimento;
 				u.sexo 				= req.body.sexo;
 				u.tipo_user			= req.user.tipo_user;
@@ -159,6 +162,8 @@ module.exports = function(app){
 			u.cpf				= req.body.cpf;
 			u.cnpj 				= req.body.cnpj;
 			u.razao 			= req.body.razao;
+			u.nome_responsavel	= req.body.nome_responsavel;
+
 			u.data_nascimento	= req.body.data_nascimento;
 			u.sexo 				= req.body.sexo;
 			u.email 			= req.body.email;

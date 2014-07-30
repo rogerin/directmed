@@ -13,6 +13,7 @@ module.exports = function(app){
 		cpf: 				{ type:String,	default: ""},
 		cnpj: 				{ type:String,	default: ""},
 		razao: 				{ type:String,	default: ""},
+		nome_responsavel: 	{ type:String,	default: ""},
 		data_nascimento: 	{ type:String,	default: ""},
 		sexo: 				{ type:String,	default: ""},
 		email: 				{ type: String, unique: true },
