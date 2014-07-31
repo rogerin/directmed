@@ -4,11 +4,16 @@
     "pagamento" : {
     	"producao": {
 			"url_transasao": "https://checkout.tray.com.br/payment/transaction",
-            "token": "67b7932500e93b6"
+            "token": "67b7932500e93b6",
+            "valor_referenciado": 10.00,
+            "valor_cartao": 10.00
+
     	},
     	"teste": {
     		"url_transasao": "https://checkout.sandbox.tray.com.br/payment/transaction",
-            "token": "7fe49d0444e9ba9"
+            "token": "7fe49d0444e9ba9",
+            "valor_referenciado": 70.00,
+            "valor_cartao": 70.00
     	}	
     }
 }

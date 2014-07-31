@@ -10,12 +10,15 @@ module.exports = function(app){
 			var url_transasao;
 			var token;
 			if(config.producao) {
-				url_transasao 	= config.pagamento.producao.url_transasao;
-				token 			= config.pagamento.producao.token;
+				url_transasao 		= config.pagamento.producao.url_transasao;
+				token 				= config.pagamento.producao.token;
+				valor_referenciado 	= config.pagamento.producao.valor_referenciado;
+				valor_cartao		= config.pagamento.producao.valor_cartao;
 			} else {
-				url_transasao 	= config.pagamento.teste.url_transasao;
-				token 			= config.pagamento.teste.token;
-
+				url_transasao 		= config.pagamento.teste.url_transasao;
+				token 				= config.pagamento.teste.token;
+				valor_referenciado	= config.pagamento.teste.valor_referenciado;
+				valor_cartao		= config.pagamento.teste.valor_cartao;
 			}
 
 

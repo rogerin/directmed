@@ -32,18 +32,32 @@ block content
 									each c in cobranca
 										if !c.resposta
 											if c.status != 6
-												tr 
-													td #{c.id_cobranca}
-													td
+												tr
+													if c.tipo == 1
+														td #{c.id_cobranca}
+														td
 
-														form(method="post", action="#{url_transasao}")
-															input(type="hidden", name="token_account", value="#{token}") 
-															input(type="hidden", name="transaction_product[][description]", value="Assinatura Referenciado DirectMed") 
-															input(type="hidden", name="transaction_product[][quantity]", value="1") 
-															input(type="hidden", name="transaction_product[][price_unit]", value="70.00") 
-															input(type="hidden", name="order_number", value="#{c.id_cobranca}")
-															input(type="hidden", name="url_notification", value="#{url_resposta}")
-															input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
+															form(method="post", action="#{url_transasao}")
+																input(type="hidden", name="token_account", value="#{token}") 
+																input(type="hidden", name="transaction_product[][description]", value="Assinatura Referenciado DirectMed") 
+																input(type="hidden", name="transaction_product[][quantity]", value="1") 
+																input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_referenciado}") 
+																input(type="hidden", name="order_number", value="#{c.id_cobranca}")
+																input(type="hidden", name="url_notification", value="#{url_resposta}")
+																input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
+													else
+														td #{c.id_cobranca}
+														td
+
+															form(method="post", action="#{url_transasao}")
+																input(type="hidden", name="token_account", value="#{token}") 
+																input(type="hidden", name="transaction_product[][description]", value="Solicitação do Cartão DirectMed") 
+																input(type="hidden", name="transaction_product[][quantity]", value="1") 
+																input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_cartao}") 
+																input(type="hidden", name="order_number", value="#{c.id_cobranca}")
+																input(type="hidden", name="url_notification", value="#{url_resposta}")
+																input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
+
 											else
 										else
 											tr
