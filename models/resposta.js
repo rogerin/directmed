@@ -12,7 +12,7 @@ module.exports = function(app){
 			free: String,
 			transaction_id: String,
 			status_name: String,
-			status_id: String,
+			status_id: Number,
 			date_transaction: String,
 			split: String,
 			price_payment: String,

@@ -24,13 +24,13 @@ html
 						li(class=(menu === 'resumo' ? 'active' : ''))
 							a(href="/") Resumo
 						if user.is_admin
-							li(class=(menu === 'referenciado' ? 'dropdown active' : 'dropdown'))
-								a(href="#", class="dropdown-toggle", data-toggle="dropdown") Referenciado <span class="caret"></span>
-								ul(class="dropdown-menu", role="menu")
-									li
-										a(href="/referenciado/cadastrar") Cadastrar
-									li 
-										a(href="/referenciados") Listar
+							//- li(class=(menu === 'referenciado' ? 'dropdown active' : 'dropdown'))
+							//- 	a(href="#", class="dropdown-toggle", data-toggle="dropdown") Referenciado <span class="caret"></span>
+							//- 	ul(class="dropdown-menu", role="menu")
+							//- 		li
+							//- 			a(href="/referenciado/cadastrar") Cadastrar
+							//- 		li 
+							//- 			a(href="/referenciados") Listar
 							li(class=(menu === 'financeiro' ? 'dropdown active' : 'dropdown'))
 								a(href="#", class="dropdown-toggle", data-toggle="dropdown") Financeiro <span class="caret"></span>
 								ul(class="dropdown-menu", role="menu")
@@ -52,6 +52,8 @@ html
 
 
 					ul(class="nav navbar-nav navbar-right")
+						li
+							a(href="") Olá, #{user.nome}
 						li(class=(menu === 'config' ? 'dropdown active' : 'dropdown'))
 							a(href="#", class="dropdown-toggle", data-toggle="dropdown", id="configuracoes") Configurações
 								span(class="caret")

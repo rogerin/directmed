@@ -14,56 +14,71 @@ block content
 						h3(class="panel-title") ATENÇÃO!
 					div(class="panel-body") 
 						if total_cobranca
-							span Você tem um total de #{total_cobranca} cobranças.
+							//span Você tem um total de #{total_cobranca} cobranças.
 							//span #{cobranca}
 
-							if cobranca.tipo == 1
+							//if cobranca.tipo == 1
 								p Ao pagar esta conta, entraremos em contato para enviar seu cartão. 
-							else
+							//else
+								p Ao pagar esta conta, liberamos o painel Referenciado para você.
 
 							
-							table(class="table table-condensed table-striped table-bordered")
-								thead
-									tr
-										th identificação
-										th Ação
-								tbody
 									
-									each c in cobranca
-										if !c.resposta
-											if c.status != 6
+							each c in cobranca
+								if c.status_id
+									if c.status_id == 6
+										p Sua cobrança #{c.id_cobranca} esta paga.
+									else
+										table(class="table table-condensed table-striped table-bordered")
+											thead
 												tr
-													if c.tipo == 1
-														td #{c.id_cobranca}
-														td
+													th identificação
+													th Ação
+											tbody
+												tr
+													td #{c.order_number} - #{c.status_name}
+													td 
+														a(href="http://checkout.sandbox.tray.com.br/payment/transaction/#{c.resposta.transaction.token_transaction}", target="_blank") Pagar
+								else
+									tr
+										if c.tipo == 1
 
-															form(method="post", action="#{url_transasao}")
-																input(type="hidden", name="token_account", value="#{token}") 
-																input(type="hidden", name="transaction_product[][description]", value="Assinatura Referenciado DirectMed") 
-																input(type="hidden", name="transaction_product[][quantity]", value="1") 
-																input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_referenciado}") 
-																input(type="hidden", name="order_number", value="#{c.id_cobranca}")
-																input(type="hidden", name="url_notification", value="#{url_resposta}")
-																input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
-													else
-														td #{c.id_cobranca}
-														td
+											table(class="table table-condensed table-striped table-bordered")
+												thead
+													tr
+														th identificação
+														th Ação
+												tbody
+													td #{c.id_cobranca}
+													td
 
-															form(method="post", action="#{url_transasao}")
-																input(type="hidden", name="token_account", value="#{token}") 
-																input(type="hidden", name="transaction_product[][description]", value="Solicitação do Cartão DirectMed") 
-																input(type="hidden", name="transaction_product[][quantity]", value="1") 
-																input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_cartao}") 
-																input(type="hidden", name="order_number", value="#{c.id_cobranca}")
-																input(type="hidden", name="url_notification", value="#{url_resposta}")
-																input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
-
-											else
+														form(method="post", action="#{url_transasao}")
+															input(type="hidden", name="token_account", value="#{token}") 
+															input(type="hidden", name="transaction_product[][description]", value="Assinatura Referenciado DirectMed") 
+															input(type="hidden", name="transaction_product[][quantity]", value="1") 
+															input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_referenciado}") 
+															input(type="hidden", name="order_number", value="#{c.id_cobranca}")
+															input(type="hidden", name="url_notification", value="#{url_resposta}")
+															input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
 										else
-											tr
-												td #{c.resposta.transaction.order_number} - #{c.resposta.transaction.status_name}
-												td 
-													a(href="http://checkout.sandbox.tray.com.br/payment/transaction/#{c.resposta.transaction.token_transaction}", target="_blank") Pagar
+											table(class="table table-condensed table-striped table-bordered")
+												thead
+													tr
+														th identificação
+														th Ação
+												tbody
+													td #{c.id_cobranca}
+													td
+
+														form(method="post", action="#{url_transasao}")
+															input(type="hidden", name="token_account", value="#{token}") 
+															input(type="hidden", name="transaction_product[][description]", value="Solicitação do Cartão DirectMed") 
+															input(type="hidden", name="transaction_product[][quantity]", value="1") 
+															input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_cartao}") 
+															input(type="hidden", name="order_number", value="#{c.id_cobranca}")
+															input(type="hidden", name="url_notification", value="#{url_resposta}")
+															input(type="submit", name="submit", value="Finalizar pagamento", class="btn btn-success") 
+											
 						else
 							span sem cobranca
 
