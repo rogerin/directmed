@@ -56,15 +56,15 @@ block content
 									td 
 										if f.user.email
 											span #{f.user.email}
-										
-									td 
-										if f.resposta.transaction.status_name
-											span #{f.resposta.transaction.status_name}
+									if f.resposta
+										td 
+											if f.resposta.transaction.status_name
+												span #{f.resposta.transaction.status_name}
 
-									//td #{ref.created_at}	 
-									td 
-										if f.resposta.transaction.order_number
-											span #{f.resposta.transaction.order_number}
+										//td #{ref.created_at}	 
+										td 
+											if f.resposta.transaction.order_number
+												span #{f.resposta.transaction.order_number}
 
 									//- td
 									//- 	div(class="btn-group")
