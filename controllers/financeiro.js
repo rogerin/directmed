@@ -24,7 +24,7 @@ module.exports = function(app){
 				  		console.log(cobranca);
 					  res.render('financeiro/listar', {
 					  	menu: 'financeiro',
-					  	cobranca: cobranca,
+					  	financeiro: cobranca,
 						user: req.user 
 					  });
 				  }

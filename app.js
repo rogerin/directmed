@@ -12,6 +12,8 @@ var express			= require('express'),
 	passportLocal 	= require('passport-local'),
 	passportHttp  	= require('passport-http'),
 	flash  			= require('express-flash');
+	// connection  	= require('express-myconnection'),
+	// mysql 			= require('mysql');
 
 
 
@@ -30,6 +32,19 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 	console.log('Conexao realizada!');
 });
+
+
+// app.use(
+    
+//     connection(mysql,{
+        
+//         host: 'localhost',
+//         user: 'root',
+//         password : '',
+//         port : 3306, //port mysql
+//         database:'exameonline'
+//     },'request')
+// );
 
 
 
