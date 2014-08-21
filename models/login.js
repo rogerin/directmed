@@ -14,3 +14,4 @@ module.exports = function(app){
 
 	return mongoose.model('Login', login);
 }
+

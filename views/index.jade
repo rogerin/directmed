@@ -54,7 +54,7 @@ block content
 
 														form(method="post", action="#{url_transasao}")
 															input(type="hidden", name="token_account", value="#{token}") 
-															input(type="hidden", name="transaction_product[][description]", value="Assinatura Referenciado DirectMed") 
+															input(type="hidden", name="transaction_product[][description]", value="PAGAMENTO REFERENTE A SOLICITAÇÃO DO CARTÃO DIRECTMED") 
 															input(type="hidden", name="transaction_product[][quantity]", value="1") 
 															input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_referenciado}") 
 															input(type="hidden", name="order_number", value="#{c.id_cobranca}")
@@ -72,7 +72,7 @@ block content
 
 														form(method="post", action="#{url_transasao}")
 															input(type="hidden", name="token_account", value="#{token}") 
-															input(type="hidden", name="transaction_product[][description]", value="Solicitação do Cartão DirectMed") 
+															input(type="hidden", name="transaction_product[][description]", value="PAGAMENTO REFERENTE A ADESÃO DO CREDENCIAMENTO DIRECTMED") 
 															input(type="hidden", name="transaction_product[][quantity]", value="1") 
 															input(type="hidden", name="transaction_product[][price_unit]", value="#{valor_cartao}") 
 															input(type="hidden", name="order_number", value="#{c.id_cobranca}")

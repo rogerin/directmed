@@ -8,6 +8,8 @@ module.exports = function(app){
 	app.get('/erro-login', login.errorLogin);
 
 
+// failureFlash: 'Invalid email or password.',
+
 	app.post('/login', passport.authenticate('local',{
 		successRedirect: '/',
 		failureRedirect: '/erro-login'
