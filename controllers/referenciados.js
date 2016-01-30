@@ -54,7 +54,7 @@ module.exports = function(app){
 							var mailOptions = {
 							    from: "Direct MED ✔ <geriofilho@gmail.com>", // sender address
 							    to: req.body.email, // list of receivers
-							    subject: "DirectMed ✔", // Subject line
+							    subject: "DirectMed ✔", // Subject line das a daasd as
 							    text: "Hello world ✔", // plaintext body																				// 
 							    html: "<h2> Finalize o pagamento </h2><form method=\"post\" action=\"https://checkout.sandbox.tray.com.br/payment/transaction\"><input type=\"hidden\" name=\"token_account\" value=\"7fe49d0444e9ba9\"><input type=\"hidden\" name=\"url_notification\" value=\"http://directmed.herokuapp.com/financeiro/resposta\"><input type=\"hidden\" name=\"transaction_product[][description]\" value=\"Cadastro DirectMed\"><input type=\"hidden\" name=\"transaction_product[][quantity]\" value=\"1\"><input type=\"hidden\" name=\"transaction_product[][price_unit]\" value=\"40.00\"><input type=\"hidden\" name=\"order_number\" value=\""+dateCrypt+"\"><input type=\"submit\" name=\"submit\" value=\"Finalize seu pagamento!!\"></form>" // html body
 							}
